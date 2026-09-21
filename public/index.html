@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiếng Anh 1 - Global Success 🌟</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #FF6B6B;
+      --primary-light: #FFE5E5;
+      --secondary: #4ECDC4;
+      --accent: #FFE66D;
+      --purple: #9D4EDD;
+      --blue: #1A73E8;
+      --dark: #2B2D42;
+      --bg: #F7F9FC;
+      --card-bg: #FFFFFF;
+      --shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.6rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .logo span {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 5px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-btn {
+      border: none;
+      background: transparent;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn.active, .nav-btn:hover {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* HOME / UNITS LIST VIEW */
+    .section-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .units-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .unit-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unit-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--secondary);
+      box-shadow: 0 15px 30px rgba(78, 205, 196, 0.25);
+    }
+
+    .unit-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-family: 'Fredoka', cursive;
+      font-size: 1.2rem;
+      font-weight: 700;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .unit-card h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      padding-right: 45px;
+    }
+
+    .unit-letter-box {
+      display: inline-block;
+      background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+      color: white;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.5rem;
+      padding: 4px 14px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .unit-vocab-preview {
+      display: flex;
+      gap: 8px;
+      font-size: 1.4rem;
+      margin-top: 0.8rem;
+    }
+
+    /* UNIT DETAIL VIEW */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 2px solid #E2E8F0;
+      color: var(--dark);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+    }
+
+    .unit-header-banner {
+      background: linear-gradient(135deg, #6C5CE7, #8075E5);
+      color: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
+    }
+
+    .unit-header-title h1 {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .unit-header-title p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .unit-phonics-badge {
+      background: var(--accent);
+      color: var(--dark);
+      font-family: 'Fredoka', cursive;
+      font-size: 2.2rem;
+      padding: 0.5rem 1.8rem;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .section-block {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .block-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* VOCAB GRID */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .vocab-card {
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .vocab-card:hover {
+      transform: scale(1.04);
+      border-color: var(--secondary);
+      background: white;
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.2);
+    }
+
+    .vocab-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .vocab-word {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .vocab-vi {
+      color: #64748B;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .audio-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.05);
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    /* SENTENCES & CHANT */
+    .sentence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sentence-card {
+      background: #F0FDF4;
+      border-left: 5px solid #22C55E;
+      padding: 1.2rem;
+      border-radius: 0 14px 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sentence-en {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.25rem;
+      color: #15803D;
+    }
+
+    .sentence-vi {
+      color: #4B5563;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+
+    .speak-btn {
+      background: #22C55E;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.1s;
+    }
+
+    .speak-btn:active {
+      transform: scale(0.95);
+    }
+
+    .chant-box {
+      background: #FFFBEB;
+      border: 2px dashed #F59E0B;
+      border-radius: 16px;
+      padding: 1.5rem;
+      white-space: pre-line;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      font-weight: 600;
+      color: #92400E;
+    }
+
+    /* GAME SECTION */
+    .game-container {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .score-board {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.3rem;
+      background: #FEF3C7;
+      color: #D97706;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    .game-question {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .game-prompt {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 1.8rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .option-btn {
+      background: #F1F5F9;
+      border: 2px solid #CBD5E1;
+      padding: 1.2rem;
+      border-radius: 16px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .option-btn.correct {
+      background: #DCFCE7 !important;
+      border-color: #22C55E !important;
+      color: #15803D !important;
+    }
+
+    .option-btn.wrong {
+      background: #FEE2E2 !important;
+      border-color: #EF4444 !important;
+      color: #B91C1C !important;
+    }
+
+    /* FLASHCARDS */
+    .flashcard-container {
+      perspective: 1000px;
+      width: 320px;
+      height: 220px;
+      margin: 0 auto 1.5rem auto;
+      cursor: pointer;
+    }
+
+    .flashcard {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      border: 3px solid #E2E8F0;
+    }
+
+    .card-front {
+      background: white;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      main { padding: 1rem; }
+      .header-container { flex-direction: column; gap: 10px; }
+      .unit-header-banner { flex-direction: column; text-align: center; gap: 15px; }
+      .options-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo" onclick="showView('units-view')">
+        🎈 Tiếng Anh 1 <span>Global Success</span>
+      </div>
+      <div class="nav-tabs">
+        <button class="nav-btn active" id="tab-units" onclick="showView('units-view')">📚 Bài học</button>
+        <button class="nav-btn" id="tab-game" onclick="startQuiz()">🎮 Trò chơi</button>
+        <button class="nav-btn" id="tab-cards" onclick="startFlashcards()">🎴 Flashcards</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- VIEW 1: UNITS LIST -->
+    <div id="units-view">
+      <div class="section-title">
+        <span>🎒</span> Chọn bài học của em:
+      </div>
+      <div class="units-grid" id="units-grid-container">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- VIEW 2: UNIT DETAIL -->
+    <div id="unit-detail-view" class="hidden">
+      <button class="back-btn" onclick="showView('units-view')">⬅ Quay lại danh sách</button>
+      
+      <div class="unit-header-banner">
+        <div class="unit-header-title">
+          <h1 id="detail-title">Unit 1: In the school playground</h1>
+          <p id="detail-subtitle">Chủ đề: Sân trường</p>
+        </div>
+        <div class="unit-phonics-badge" id="detail-letter">
+          Bb /b/
+        </div>
+      </div>
+
+      <!-- VOCABULARY -->
+      <div class="section-block">
+        <div class="block-title">
+          <span>🔊</span> Từ vựng & Phát âm (Nhấp vào hình để nghe đọc)
+        </div>
+        <div class="vocab-grid" id="detail-vocab-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- SENTENCES -->
+      <div class="section-block">
+        <div class="block-title">
+          <span>💬</span> Mẫu câu giao tiếp (Sentence Patterns)
+        </div>
+        <div class="sentence-list" id="detail-sentence-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- CHANT -->
+      <div class="section-block">
+        <div class="block-title">
+          <span>🎵</span> Bài vè nghe nhạc (Listen and chant)
+        </div>
+        <div class="chant-box" id="detail-chant">
+          <!-- Dynamically populated -->
+        </div>
+        <button style="margin-top: 15px;" class="speak-btn" id="chant-speech-btn" onclick="speakChant()">🔊 Đọc bài vè</button>
+      </div>
+    </div>
+
+    <!-- VIEW 3: QUIZ GAME -->
+    <div id="game-view" class="hidden">
+      <div class="game-container">
+        <div class="game-header">
+          <button class="back-btn" onclick="showView('units-view')">❌ Thoát</button>
+          <div class="score-board">⭐ Điểm: <span id="game-score">0</span></div>
+        </div>
+
+        <div class="game-question" id="game-emoji">⚽</div>
+        <div class="game-prompt" id="game-prompt">Đây là từ gì trong tiếng Anh?</div>
+
+        <div class="options-grid" id="game-options">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: FLASHCARDS -->
+    <div id="flashcard-view" class="hidden">
+      <button class="back-btn" onclick="showView('units-view')">⬅ Quay lại</button>
+      <div class="game-container">
+        <h2 style="font-family: 'Fredoka'; margin-bottom: 1rem;">🎴 Thẻ từ vựng thông minh</h2>
+        <p style="color: #64748B; margin-bottom: 1.5rem;">Nhấp vào thẻ để lật xem nghĩa tiếng Việt & nghe đọc!</p>
+
+        <div class="flashcard-container" onclick="flipCard()">
+          <div class="flashcard" id="active-card">
+            <div class="card-front">
+              <div style="font-size: 4rem;" id="fc-icon">📚</div>
+              <div style="font-family: 'Fredoka'; font-size: 1.8rem; color: var(--primary); margin-top: 10px;" id="fc-word">book</div>
+            </div>
+            <div class="card-back">
+              <div style="font-size: 1.8rem; font-weight: 700;" id="fc-vi">quyển sách</div>
+              <div style="margin-top: 10px; font-size: 0.95rem; opacity: 0.9;">Nhấp lần nữa để lật lại</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 15px;">
+          <button class="speak-btn" style="background: #3B82F6;" onclick="prevCard()">⬅ Thẻ trước</button>
+          <button class="speak-btn" style="background: var(--primary);" onclick="speakWord(currentFC.word)">🔊 Nghe phát âm</button>
+          <button class="speak-btn" style="background: #3B82F6;" onclick="nextCard()">Thẻ sau ➡</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let courseData = [];
+    let currentUnit = null;
+
+    // Game state
+    let quizScore = 0;
+    let currentQuizItem = null;
+
+    // Flashcard state
+    let allVocabList = [];
+    let fcIndex = 0;
+    let currentFC = null;
+
+    // Load dataset
+    fetch('./course_data.json')
+      .then(res => res.json())
+      .then(data => {
+        courseData = data;
+        renderUnitsGrid();
+        buildVocabList();
+      });
+
+    function renderUnitsGrid() {
+      const container = document.getElementById('units-grid-container');
+      container.innerHTML = '';
+
+      courseData.forEach(u => {
+        const card = document.createElement('div');
+        card.className = 'unit-card';
+        card.onclick = () => openUnitDetail(u.unit);
+
+        const icons = u.vocab.map(v => v.icon).join(' ');
+
+        card.innerHTML = `
+          <div class="unit-badge">${u.unit}</div>
+          <div class="unit-letter-box">${u.letter}</div>
+          <h3>${u.title}</h3>
+          <div style="color: #64748B; font-size: 0.9rem; font-weight: 600;">Phonics: ${u.phonics}</div>
+          <div class="unit-vocab-preview">${icons}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function buildVocabList() {
+      allVocabList = [];
+      courseData.forEach(u => {
+        u.vocab.forEach(v => {
+          allVocabList.push({
+            ...v,
+            unit: u.unit
+          });
+        });
+      });
+    }
+
+    function showView(viewId) {
+      ['units-view', 'unit-detail-view', 'game-view', 'flashcard-view'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(viewId).classList.remove('hidden');
+
+      // Update Nav Tabs
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      if(viewId === 'units-view') document.getElementById('tab-units').classList.add('active');
+      if(viewId === 'game-view') document.getElementById('tab-game').classList.add('active');
+      if(viewId === 'flashcard-view') document.getElementById('tab-cards').classList.add('active');
+    }
+
+    function openUnitDetail(unitNum) {
+      currentUnit = courseData.find(u => u.unit === unitNum);
+      if (!currentUnit) return;
+
+      document.getElementById('detail-title').innerText = `Unit ${currentUnit.unit}: ${currentUnit.title}`;
+      document.getElementById('detail-subtitle').innerText = `Bài học chữ cái & âm: ${currentUnit.letter}`;
+      document.getElementById('detail-letter').innerText = `${currentUnit.letter} ${currentUnit.phonics}`;
+
+      // Populate Vocab Grid
+      const vocabGrid = document.getElementById('detail-vocab-grid');
+      vocabGrid.innerHTML = '';
+      currentUnit.vocab.forEach(v => {
+        const item = document.createElement('div');
+        item.className = 'vocab-card';
+        item.onclick = () => speakWord(v.word);
+        item.innerHTML = `
+          <button class="audio-btn">🔊</button>
+          <div class="vocab-icon">${v.icon}</div>
+          <div class="vocab-word">${v.word}</div>
+          <div class="vocab-vi">${v.translation}</div>
+        `;
+        vocabGrid.appendChild(item);
+      });
+
+      // Populate Sentences
+      const sentenceList = document.getElementById('detail-sentence-list');
+      sentenceList.innerHTML = '';
+      currentUnit.sentences.forEach(s => {
+        const sCard = document.createElement('div');
+        sCard.className = 'sentence-card';
+        sCard.innerHTML = `
+          <div>
+            <div class="sentence-en">${s.en}</div>
+            <div class="sentence-vi">${s.vi}</div>
+          </div>
+          <button class="speak-btn" onclick="speakText('${s.en.replace(/'/g, "\\'")}')">🔊 Nghe</button>
+        `;
+        sentenceList.appendChild(sCard);
+      });
+
+      // Populate Chant
+      document.getElementById('detail-chant').innerText = currentUnit.chant;
+
+      showView('unit-detail-view');
+    }
+
+    // TTS SPEECH SYNTHESIS
+    function speakWord(word) {
+      speakText(word);
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85; // slightly slower for grade 1 kids
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('Trình duyệt không hỗ trợ phát âm tự động.');
+      }
+    }
+
+    function speakChant() {
+      if (currentUnit && currentUnit.chant) {
+        speakText(currentUnit.chant);
+      }
+    }
+
+    /* GAME LOGIC */
+    function startQuiz() {
+      quizScore = 0;
+      document.getElementById('game-score').innerText = quizScore;
+      showView('game-view');
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (allVocabList.length === 0) return;
+      
+      // Select random word
+      const target = allVocabList[Math.floor(Math.random() * allVocabList.length)];
+      currentQuizItem = target;
+
+      document.getElementById('game-emoji').innerText = target.icon;
+      document.getElementById('game-prompt').innerText = `Từ tiếng Anh của "${target.translation}" là gì?`;
+
+      // Speak target automatically
+      speakWord(target.word);
+
+      // Generate options (1 correct, 3 wrong)
+      let options = [target.word];
+      while (options.length < 4) {
+        const rand = allVocabList[Math.floor(Math.random() * allVocabList.length)].word;
+        if (!options.includes(rand)) {
+          options.push(rand);
+        }
+      }
+      // Shuffle options
+      options.sort(() => Math.random() - 0.5);
+
+      const optionsGrid = document.getElementById('game-options');
+      optionsGrid.innerHTML = '';
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(opt, btn);
+        optionsGrid.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selectedWord, btnElement) {
+      const isCorrect = selectedWord === currentQuizItem.word;
+      if (isCorrect) {
+        btnElement.classList.add('correct');
+        quizScore += 10;
+        document.getElementById('game-score').innerText = quizScore;
+        confetti({ particleCount: 60, spread: 60, origin: { y: 0.7 } });
+        speakText("Awesome! " + currentQuizItem.word);
+        setTimeout(nextQuestion, 1200);
+      } else {
+        btnElement.classList.add('wrong');
+        speakText("Try again!");
+      }
+    }
+
+    /* FLASHCARDS LOGIC */
+    function startFlashcards() {
+      fcIndex = 0;
+      showView('flashcard-view');
+      renderFC();
+    }
+
+    function renderFC() {
+      if (allVocabList.length === 0) return;
+      currentFC = allVocabList[fcIndex];
+      const card = document.getElementById('active-card');
+      card.classList.remove('flipped');
+
+      setTimeout(() => {
+        document.getElementById('fc-icon').innerText = currentFC.icon;
+        document.getElementById('fc-word').innerText = currentFC.word;
+        document.getElementById('fc-vi').innerText = currentFC.translation;
+      }, 150);
+    }
+
+    function flipCard() {
+      document.getElementById('active-card').classList.toggle('flipped');
+    }
+
+    function nextCard() {
+      fcIndex = (fcIndex + 1) % allVocabList.length;
+      renderFC();
+    }
+
+    function prevCard() {
+      fcIndex = (fcIndex - 1 + allVocabList.length) % allVocabList.length;
+      renderFC();
+    }
+  </script>
+</body>
+</html>
