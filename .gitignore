@@ -1,0 +1,9 @@
+# Dữ liệu tài liệu tham khảo nặng
+data/
+
+# Hệ điều hành & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
