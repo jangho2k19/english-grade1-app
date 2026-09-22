@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B6B" />
+      <stop offset="100%" stop-color="#FF8E53" />
+    </linearGradient>
+  </defs>
+  <!-- Background rounded app icon -->
+  <rect width="192" height="192" rx="42" fill="url(#bgGrad)" />
+  <!-- Book base -->
+  <path d="M36 68 C64 58 90 66 96 72 C102 66 128 58 156 68 L156 138 C128 128 102 136 96 142 C90 136 64 128 36 138 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Spine -->
+  <line x1="96" y1="72" x2="96" y2="142" stroke="#2B2D42" stroke-width="4.5"/>
+  <!-- Ribbon -->
+  <path d="M96 72 L96 126 L90 118 L84 126 L84 72" fill="#FF4757" stroke="#2B2D42" stroke-width="3"/>
+  <!-- Big Golden Star on top -->
+  <polygon points="96,26 102,40 117,41 105,51 109,66 96,57 83,66 87,51 75,41 90,40" fill="#FFE66D" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- English 1 text -->
+  <text x="96" y="172" font-family="'Fredoka', sans-serif" font-weight="700" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">TIẾNG ANH 1</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "name": "Tiếng Anh 1 - Global Success",
+  "short_name": "Tiếng Anh 1",
+  "description": "Ứng dụng học Tiếng Anh lớp 1 theo chuẩn sách giáo khoa Global Success - Phát âm chuẩn giọng nữ, hình ảnh minh họa vector hoạt hình sống động.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F0F4F8",
+  "theme_color": "#FF5E62",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

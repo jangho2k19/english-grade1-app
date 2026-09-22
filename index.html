@@ -2,10 +2,17 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Ứng dụng học Tiếng Anh lớp 1 theo chuẩn sách giáo khoa Global Success - Phát âm chuẩn giọng nữ trong trẻo, hình ảnh minh họa vector hoạt hình sống động, trò chơi đố vui và thẻ flashcard thông minh.">
   <title>Tiếng Anh 1 - Global Success 🌟</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>">
+  <!-- PWA & Mobile Web App Meta -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#FF5E62">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tiếng Anh 1">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -42,6 +49,7 @@
       padding: 0;
       font-family: 'Quicksand', sans-serif;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     body {
@@ -159,15 +167,16 @@
       border: none;
       background: transparent;
       color: white;
-      padding: 5px 12px;
-      border-radius: 18px;
+      padding: 7px 14px;
+      min-height: 42px;
+      border-radius: 20px;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       white-space: nowrap;
     }
 
@@ -181,21 +190,23 @@
     .header-utility-btns {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .header-action-btn {
       background: rgba(255, 255, 255, 0.2);
       border: 1.5px solid rgba(255, 255, 255, 0.35);
       color: white;
-      width: 34px;
-      height: 34px;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      min-height: 38px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 1rem;
       transition: all 0.2s;
     }
 
@@ -292,6 +303,8 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      content-visibility: auto;
+      contain-intrinsic-size: 260px;
     }
 
     .unit-card:hover {
@@ -321,9 +334,28 @@
     .unit-stars-indicator {
       display: flex;
       align-items: center;
-      gap: 2px;
-      font-size: 1rem;
-      color: #F59E0B;
+      gap: 3px;
+    }
+
+    .star-svg-glyph {
+      width: 17px;
+      height: 17px;
+      display: inline-block;
+      vertical-align: middle;
+      transition: transform 0.2s;
+    }
+
+    .star-svg-glyph.filled polygon {
+      fill: #FBBF24;
+      stroke: #D97706;
+      stroke-width: 1.2;
+      filter: drop-shadow(0 1px 1px rgba(217, 119, 6, 0.3));
+    }
+
+    .star-svg-glyph.empty polygon {
+      fill: #F1F5F9;
+      stroke: #CBD5E1;
+      stroke-width: 1.2;
     }
 
     .unit-letter-box {
@@ -2036,7 +2068,9 @@
       <div class="header-right">
         <!-- Star score button -->
         <div class="star-counter-badge" id="header-star-badge" title="Tổng số sao đạt được!" onclick="showView('units-view')">
-          <span class="star-icon">⭐</span>
+          <svg class="star-mini-svg" viewBox="0 0 24 24" width="18" height="18" style="vertical-align: middle; flex-shrink: 0;">
+            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#FBBF24" stroke="#D97706" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
           <span id="header-total-stars">0</span> Sao
         </div>
 
@@ -2248,7 +2282,12 @@
               </div>
               <!-- BACK -->
               <div class="card-back">
-                <div style="font-size: 2.8rem; margin-bottom: 5px;">🇻🇳</div>
+                <div class="vn-flag-box" style="margin-bottom: 8px;">
+                  <svg viewBox="0 0 60 40" width="56" height="38" style="border-radius: 6px; box-shadow: 0 3px 8px rgba(0,0,0,0.16); display: block; margin: 0 auto;">
+                    <rect width="60" height="40" fill="#DA251D" />
+                    <polygon points="30,8 33.5,18 44,18 35.5,24 38.5,34 30,28 21.5,34 24.5,24 16,18 26.5,18" fill="#FFCD00" />
+                  </svg>
+                </div>
                 <div class="card-word-vi" id="fc-vi">quyển sách</div>
                 <div class="card-hint">Chạm lần nữa để lật lại</div>
               </div>
@@ -2463,10 +2502,14 @@
     window.addEventListener('DOMContentLoaded', () => {
       loadSavedStars();
 
-      // If COURSE_DATA wasn't preloaded, fetch course_data.json
+      // If COURSE_DATA wasn't preloaded, fetch units.json / course_data.json
       if (!courseData || courseData.length === 0) {
-        fetch('./course_data.json')
-          .then(res => res.json())
+        fetch('./units.json')
+          .then(res => {
+            if (!res.ok) throw new Error('units.json not ok');
+            return res.json();
+          })
+          .catch(() => fetch('./course_data.json').then(r => r.json()))
           .then(data => {
             courseData = data;
             initApp();
@@ -2479,6 +2522,17 @@
       }
 
       initVoices();
+
+      // Register PWA Service Worker for 100% Offline Learning
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').then(reg => {
+            console.log('PWA Service Worker registered:', reg.scope);
+          }).catch(err => {
+            console.warn('PWA registration note:', err);
+          });
+        });
+      }
     });
 
     function initApp() {
@@ -2486,6 +2540,58 @@
       renderUnitsGrid();
       populateScopeSelectors();
       updateTotalStarsBadge();
+    }
+
+    /* UNIVERSAL AUDIO & TTS UNBLOCKER FOR MOBILE (iOS Safari & Android Chrome) */
+    let audioUnlocked = false;
+    function unlockAudioMobile() {
+      if (audioUnlocked) return;
+      audioUnlocked = true;
+
+      try {
+        const ctx = getAudioContext();
+        if (ctx && ctx.state === 'suspended') {
+          ctx.resume();
+        }
+        if (ctx) {
+          const buffer = ctx.createBuffer(1, 1, 22050);
+          const source = ctx.createBufferSource();
+          source.buffer = buffer;
+          source.connect(ctx.destination);
+          source.start(0);
+        }
+      } catch (e) {
+        console.warn('AudioContext unlock note:', e);
+      }
+
+      try {
+        if ('speechSynthesis' in window) {
+          const warmUp = new SpeechSynthesisUtterance('');
+          warmUp.volume = 0.01;
+          window.speechSynthesis.speak(warmUp);
+        }
+      } catch (e) {
+        console.warn('TTS warm-up note:', e);
+      }
+    }
+
+    document.addEventListener('touchstart', unlockAudioMobile, { once: true, passive: true });
+    document.addEventListener('click', unlockAudioMobile, { once: true });
+    document.addEventListener('pointerdown', unlockAudioMobile, { once: true, passive: true });
+
+    /* PRELOAD AUDIO ASSETS */
+    const preloadedAudioMap = new Map();
+    function preloadUnitAudio(unitNum) {
+      if (typeof SONGS_DATA === 'undefined') return;
+      const related = SONGS_DATA.filter(s => s.units && s.units.includes(unitNum));
+      related.forEach(s => {
+        if (s.audioSrc && !preloadedAudioMap.has(s.audioSrc)) {
+          const audio = new Audio();
+          audio.preload = 'auto';
+          audio.src = s.audioSrc;
+          preloadedAudioMap.set(s.audioSrc, audio);
+        }
+      });
     }
 
     /* SOUND EFFECTS (Web Audio API) */
@@ -2716,6 +2822,17 @@
       });
     }
 
+    function getStarRatingHTML(stars, max = 4) {
+      let html = '';
+      for (let i = 0; i < max; i++) {
+        const isFilled = i < stars;
+        html += `<svg class="star-svg-glyph ${isFilled ? 'filled' : 'empty'}" viewBox="0 0 24 24" width="16" height="16">
+          <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+        </svg>`;
+      }
+      return html;
+    }
+
     function renderUnitsGrid() {
       const container = document.getElementById('units-grid-container');
       container.innerHTML = '';
@@ -2726,10 +2843,7 @@
         card.onclick = () => openUnitDetail(u.unit);
 
         const stars = earnedStars[u.unit] || 0;
-        let starIcons = '';
-        for (let i = 0; i < 4; i++) {
-          starIcons += (i < stars) ? '⭐' : '☆';
-        }
+        const starIcons = getStarRatingHTML(stars, 4);
 
         // Generate 4 mini vector illustrations for preview WITH English word label
         const artPreviews = u.vocab.map(v => `
@@ -2866,6 +2980,9 @@
     function openUnitDetail(unitNum) {
       currentUnit = courseData.find(u => u.unit === unitNum);
       if (!currentUnit) return;
+
+      // Preload real song audio assets for instant latency-free playback
+      preloadUnitAudio(currentUnit.unit);
 
       // Reset quiz mode on entering a unit
       isVocabQuizMode = false;

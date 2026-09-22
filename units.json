@@ -1,0 +1,626 @@
+[
+  {
+    "unit": 1,
+    "title": "In the school playground",
+    "letter": "Bb",
+    "phonics": "/b/",
+    "vocab": [
+      {
+        "word": "ball",
+        "translation": "quả bóng",
+        "icon": "⚽"
+      },
+      {
+        "word": "bike",
+        "translation": "xe đạp",
+        "icon": "🚲"
+      },
+      {
+        "word": "book",
+        "translation": "quyển sách",
+        "icon": "📚"
+      },
+      {
+        "word": "Bill",
+        "translation": "bạn Bill (tên riêng)",
+        "icon": "👦"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "Hi, I'm Bill.",
+        "vi": "Xin chào, mình là Bill."
+      },
+      {
+        "en": "Bye, Bill.",
+        "vi": "Tạm biệt, Bill."
+      }
+    ],
+    "chant": "B, b, ball. B, b, book.\nA ball, a ball. A book, a book.\nB, b, a ball. B, b, a book.\nB, b, bike. A bike, a bike."
+  },
+  {
+    "unit": 2,
+    "title": "In the dining room",
+    "letter": "Cc",
+    "phonics": "/k/",
+    "vocab": [
+      {
+        "word": "cake",
+        "translation": "bánh ngọt",
+        "icon": "🍰"
+      },
+      {
+        "word": "car",
+        "translation": "xe ô tô",
+        "icon": "🚗"
+      },
+      {
+        "word": "cat",
+        "translation": "con mèo",
+        "icon": "🐱"
+      },
+      {
+        "word": "cup",
+        "translation": "cái cốc",
+        "icon": "☕"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "I have a car.",
+        "vi": "Tôi có một chiếc xe ô tô."
+      },
+      {
+        "en": "I have a cup.",
+        "vi": "Tôi có một cái cốc."
+      }
+    ],
+    "chant": "C, c, a cup. C, c, a cake.\nA cup and a cake.\nC, c, a cat. C, c, a car.\nA cat and a car."
+  },
+  {
+    "unit": 3,
+    "title": "At the street market",
+    "letter": "Aa",
+    "phonics": "/æ/",
+    "vocab": [
+      {
+        "word": "apple",
+        "translation": "quả táo",
+        "icon": "🍎"
+      },
+      {
+        "word": "bag",
+        "translation": "cặp / túi",
+        "icon": "🎒"
+      },
+      {
+        "word": "can",
+        "translation": "lon nước",
+        "icon": "🥫"
+      },
+      {
+        "word": "hat",
+        "translation": "cái mũ",
+        "icon": "🧢"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "This is my bag.",
+        "vi": "Đây là chiếc cặp của tôi."
+      },
+      {
+        "en": "Hi, I'm Ann.",
+        "vi": "Xin chào, mình là Ann."
+      }
+    ],
+    "chant": "A, a, apple. A, a, bag.\nThere's an apple in the bag.\nA, a, cat. A, a, hat.\nThere's a cat on the hat."
+  },
+  {
+    "unit": 4,
+    "title": "In the bedroom",
+    "letter": "Dd",
+    "phonics": "/d/",
+    "vocab": [
+      {
+        "word": "desk",
+        "translation": "bàn học",
+        "icon": "🪑"
+      },
+      {
+        "word": "dog",
+        "translation": "con chó",
+        "icon": "🐶"
+      },
+      {
+        "word": "door",
+        "translation": "cửa ra vào",
+        "icon": "🚪"
+      },
+      {
+        "word": "duck",
+        "translation": "con vịt",
+        "icon": "🦆"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "This is a dog.",
+        "vi": "Đây là một con chó."
+      },
+      {
+        "en": "It's on the desk.",
+        "vi": "Nó ở trên bàn."
+      }
+    ],
+    "chant": "D, d, duck. D, d, dog.\nA duck and a dog.\nD, d, door. D, d, desk.\nA door and a desk."
+  },
+  {
+    "unit": 5,
+    "title": "At the fish and chip shop",
+    "letter": "Ii",
+    "phonics": "/ɪ/",
+    "vocab": [
+      {
+        "word": "chicken",
+        "translation": "thịt gà / gà rán",
+        "icon": "🍗"
+      },
+      {
+        "word": "chips",
+        "translation": "khoai tây chiên",
+        "icon": "🍟"
+      },
+      {
+        "word": "fish",
+        "translation": "cá",
+        "icon": "🐟"
+      },
+      {
+        "word": "milk",
+        "translation": "sữa",
+        "icon": "🥛"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "I like milk.",
+        "vi": "Tôi thích sữa."
+      },
+      {
+        "en": "Fish and chips.",
+        "vi": "Cá và khoai tây chiên."
+      }
+    ],
+    "chant": "I, i, fish. I, i, chips.\nFish and chips. Fish and chips.\nI, i, milk. I, i, chicken.\nMilk and chicken."
+  },
+  {
+    "unit": 6,
+    "title": "In the classroom",
+    "letter": "Ee",
+    "phonics": "/e/",
+    "vocab": [
+      {
+        "word": "bell",
+        "translation": "cái chuông",
+        "icon": "🔔"
+      },
+      {
+        "word": "pen",
+        "translation": "bút mực",
+        "icon": "🖊️"
+      },
+      {
+        "word": "pencil",
+        "translation": "bút chì",
+        "icon": "✏️"
+      },
+      {
+        "word": "red",
+        "translation": "màu đỏ",
+        "icon": "🔴"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "It's a red pen.",
+        "vi": "Nó là một cây bút màu đỏ."
+      },
+      {
+        "en": "I have a pen.",
+        "vi": "Tôi có một cây bút."
+      }
+    ],
+    "chant": "E, e, red. E, e, pen.\nE, e, a red pen.\nE, e, red. E, e, pencil.\nE, e, a red pencil."
+  },
+  {
+    "unit": 7,
+    "title": "In the garden",
+    "letter": "Gg",
+    "phonics": "/ɡ/",
+    "vocab": [
+      {
+        "word": "garden",
+        "translation": "Khu vườn",
+        "icon": "🏡"
+      },
+      {
+        "word": "gate",
+        "translation": "Cổng",
+        "icon": "🚧"
+      },
+      {
+        "word": "girl",
+        "translation": "Cô gái",
+        "icon": "👧"
+      },
+      {
+        "word": "goat",
+        "translation": "Con dê",
+        "icon": "🐐"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "There's a garden.",
+        "vi": "Có một khu vườn."
+      },
+      {
+        "en": "A girl in the garden.",
+        "vi": "Một cô gái trong vườn."
+      }
+    ],
+    "chant": "G, g, goat. G, g, gate.\nA goat and a gate.\nG, g, girl. G, g, garden.\nA girl and a garden."
+  },
+  {
+    "unit": 8,
+    "title": "In the park",
+    "letter": "Hh",
+    "phonics": "/h/",
+    "vocab": [
+      {
+        "word": "hair",
+        "translation": "Tóc",
+        "icon": "💇"
+      },
+      {
+        "word": "hand",
+        "translation": "Bàn tay",
+        "icon": "✋"
+      },
+      {
+        "word": "head",
+        "translation": "Đầu",
+        "icon": "🗣️"
+      },
+      {
+        "word": "horse",
+        "translation": "Con ngựa",
+        "icon": "🐴"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "Touch your hair.",
+        "vi": "Chạm vào tóc của bạn."
+      },
+      {
+        "en": "Touch your head.",
+        "vi": "Chạm vào đầu của bạn."
+      }
+    ],
+    "chant": "H, h, h. Head and hair.\nHoa's head. Hoa's hair.\nH, h, h. Hat and hands.\nHoa's hat. Hoa's hands."
+  },
+  {
+    "unit": 9,
+    "title": "In the shop",
+    "letter": "Oo",
+    "phonics": "/ɒ/",
+    "vocab": [
+      {
+        "word": "clocks",
+        "translation": "Đồng hồ (số nhiều)",
+        "icon": "⏰"
+      },
+      {
+        "word": "locks",
+        "translation": "Ổ khóa (số nhiều)",
+        "icon": "🔒"
+      },
+      {
+        "word": "mops",
+        "translation": "Cây lau nhà (số nhiều)",
+        "icon": "🧹"
+      },
+      {
+        "word": "pots",
+        "translation": "Cái nồi (số nhiều)",
+        "icon": "🍲"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "How many clocks?",
+        "vi": "Có bao nhiêu đồng hồ?"
+      },
+      {
+        "en": "Two.",
+        "vi": "Hai cái."
+      }
+    ],
+    "chant": "O, o, locks and clocks.\nThere are two locks. There are three clocks.\nO, o, mops and pots.\nThere are four mops. There are five pots."
+  },
+  {
+    "unit": 10,
+    "title": "At the zoo",
+    "letter": "Mm",
+    "phonics": "/m/",
+    "vocab": [
+      {
+        "word": "mango",
+        "translation": "Quả xoài",
+        "icon": "🥭"
+      },
+      {
+        "word": "monkey",
+        "translation": "Con khỉ",
+        "icon": "🐒"
+      },
+      {
+        "word": "mother",
+        "translation": "Mẹ",
+        "icon": "👩"
+      },
+      {
+        "word": "mouse",
+        "translation": "Con chuột",
+        "icon": "🐭"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "That's a monkey.",
+        "vi": "Kia là một con khỉ."
+      },
+      {
+        "en": "That's a mango.",
+        "vi": "Kia là một quả xoài."
+      }
+    ],
+    "chant": "M, m, m. M is for monkey.\nM is for mother. M is for mouse.\nM is for mango.\nMonkey and mouse. Mother and mango."
+  },
+  {
+    "unit": 11,
+    "title": "At the bus stop",
+    "letter": "Uu",
+    "phonics": "/ʌ/",
+    "vocab": [
+      {
+        "word": "bus",
+        "translation": "Xe buýt",
+        "icon": "🚌"
+      },
+      {
+        "word": "running",
+        "translation": "Đang chạy",
+        "icon": "🏃"
+      },
+      {
+        "word": "sun",
+        "translation": "Mặt trời",
+        "icon": "☀️"
+      },
+      {
+        "word": "truck",
+        "translation": "Xe tải",
+        "icon": "🚛"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "He's running.",
+        "vi": "Cậu ấy đang chạy."
+      },
+      {
+        "en": "She's running.",
+        "vi": "Cô ấy đang chạy."
+      }
+    ],
+    "chant": "Look at the truck. The truck is moving.\nLook at the bus. The bus is moving.\nLook at the boy. The boy is running."
+  },
+  {
+    "unit": 12,
+    "title": "At the lake",
+    "letter": "Ll",
+    "phonics": "/l/",
+    "vocab": [
+      {
+        "word": "lake",
+        "translation": "Hồ nước",
+        "icon": "🏞️"
+      },
+      {
+        "word": "leaf",
+        "translation": "Chiếc lá",
+        "icon": "🍃"
+      },
+      {
+        "word": "lemons",
+        "translation": "Quả chanh vàng",
+        "icon": "🍋"
+      },
+      {
+        "word": "Lucy",
+        "translation": "Bạn Lucy",
+        "icon": "👧"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "Look at Lucy.",
+        "vi": "Nhìn bạn Lucy kìa."
+      },
+      {
+        "en": "Look at the lemons.",
+        "vi": "Nhìn những quả chanh kìa."
+      }
+    ],
+    "chant": "L, l, Lucy. L, l, lake. L, l, lemons.\nLook at Lucy. Look at the lake.\nLook at the lemons."
+  },
+  {
+    "unit": 13,
+    "title": "In the school canteen",
+    "letter": "Nn",
+    "phonics": "/n/",
+    "vocab": [
+      {
+        "word": "bananas",
+        "translation": "Những quả chuối",
+        "icon": "🍌"
+      },
+      {
+        "word": "Nick",
+        "translation": "Bạn Nick",
+        "icon": "👦"
+      },
+      {
+        "word": "noodles",
+        "translation": "Mì / Mì sợi",
+        "icon": "🍜"
+      },
+      {
+        "word": "nuts",
+        "translation": "Các loại hạt",
+        "icon": "🥜"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "He's having nuts.",
+        "vi": "Cậu ấy đang ăn hạt."
+      },
+      {
+        "en": "She's having noodles.",
+        "vi": "Cô ấy đang ăn mì."
+      }
+    ],
+    "chant": "Nam, Nam, Nam. Nuts, nuts, nuts.\nNam's having nuts.\nNick, Nick, Nick. Noodles, noodles, noodles.\nNick's having noodles."
+  },
+  {
+    "unit": 14,
+    "title": "In the toy shop",
+    "letter": "Tt",
+    "phonics": "/t/",
+    "vocab": [
+      {
+        "word": "teddy bear",
+        "translation": "Gấu bông",
+        "icon": "🧸"
+      },
+      {
+        "word": "tiger",
+        "translation": "Con hổ",
+        "icon": "🐯"
+      },
+      {
+        "word": "top",
+        "translation": "Con quay",
+        "icon": "🪀"
+      },
+      {
+        "word": "turtle",
+        "translation": "Con rùa",
+        "icon": "🐢"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "I can see a tiger.",
+        "vi": "Tôi có thể thấy một con hổ."
+      },
+      {
+        "en": "He's in the toy shop.",
+        "vi": "Cậu ấy ở trong cửa hàng đồ chơi."
+      }
+    ],
+    "chant": "T, t, top. T, t, turtle. T, t, tiger. T, t, teddy bear.\nTony has a top. Tony has a turtle.\nTony has a tiger. Tony has a teddy bear."
+  },
+  {
+    "unit": 15,
+    "title": "At the football match",
+    "letter": "Ff",
+    "phonics": "/f/",
+    "vocab": [
+      {
+        "word": "face",
+        "translation": "Khuôn mặt",
+        "icon": "😊"
+      },
+      {
+        "word": "father",
+        "translation": "Bố / Cha",
+        "icon": "👨"
+      },
+      {
+        "word": "foot",
+        "translation": "Bàn chân",
+        "icon": "🦶"
+      },
+      {
+        "word": "football",
+        "translation": "Bóng đá / Quả bóng đá",
+        "icon": "⚽"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "Point to your hand.",
+        "vi": "Chỉ vào bàn tay của bạn."
+      },
+      {
+        "en": "Point to your face.",
+        "vi": "Chỉ vào khuôn mặt của bạn."
+      }
+    ],
+    "chant": "F, f, face. Bill has a lovely face.\nF, f, football. Bill's watching football.\nF, f, father. Father's watching football."
+  },
+  {
+    "unit": 16,
+    "title": "At home",
+    "letter": "Ww",
+    "phonics": "/w/",
+    "vocab": [
+      {
+        "word": "washing",
+        "translation": "Đang giặt rửa",
+        "icon": "🧼"
+      },
+      {
+        "word": "water",
+        "translation": "Nước",
+        "icon": "💧"
+      },
+      {
+        "word": "Wendy",
+        "translation": "Bạn Wendy",
+        "icon": "👧"
+      },
+      {
+        "word": "window",
+        "translation": "Cửa sổ",
+        "icon": "🪟"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "How many windows can you see?",
+        "vi": "Bạn có thể thấy bao nhiêu cửa sổ?"
+      },
+      {
+        "en": "I can see six.",
+        "vi": "Tôi có thể thấy 6 cái."
+      }
+    ],
+    "chant": "W, w, window. How many windows?\nSix or seven.\nW, w, window. How many windows?\nEight, nine or ten.\nSix, seven. Eight, nine, ten."
+  }
+]
