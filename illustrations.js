@@ -1,182 +1,231 @@
 // Thư viện hình vẽ vector minh họa sống động, rực rỡ cho 64 từ vựng Tiếng Anh Lớp 1 (Global Success)
+// Thiết kế đồng bộ phong cách Vector Cartoon hiện đại với viền bo tròn (#2B2D42, nét 3-3.5px), màu sắc tươi sáng, bóng đổ sàn đồng nhất.
 const VOCAB_ILLUSTRATIONS = {
   // UNIT 1: Bb
   "ball": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <circle cx="50" cy="50" r="42" fill="#FF5E62" />
-    <circle cx="50" cy="50" r="42" fill="url(#grad-ball)" />
-    <circle cx="50" cy="50" r="40" fill="none" stroke="#FFFFFF" stroke-width="4"/>
-    <path d="M50 10 L50 90 M10 50 L90 50" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-    <path d="M22 22 Q50 40 78 22" fill="none" stroke="#FFE66D" stroke-width="5" stroke-linecap="round"/>
-    <path d="M22 78 Q50 60 78 78" fill="none" stroke="#FFE66D" stroke-width="5" stroke-linecap="round"/>
-    <circle cx="50" cy="50" r="12" fill="#4ECDC4" stroke="#FFFFFF" stroke-width="3"/>
-    <circle cx="35" cy="35" r="4" fill="#FFFFFF" opacity="0.8"/>
-    <defs><radialGradient id="grad-ball" cx="35%" cy="35%"><stop offset="0%" stop-color="#FF9966"/><stop offset="100%" stop-color="#FF5E62"/></radialGradient></defs>
+    <!-- Ball shadow -->
+    <ellipse cx="50" cy="90" rx="34" ry="6" fill="#E2E8F0" />
+    <!-- Ball base -->
+    <circle cx="50" cy="48" r="38" fill="#FF5E62" stroke="#2B2D42" stroke-width="3.5" />
+    <!-- Colored panels -->
+    <path d="M24 24 Q50 48 24 72" fill="#4ECDC4" stroke="#2B2D42" stroke-width="3" stroke-linecap="round"/>
+    <path d="M76 24 Q50 48 76 72" fill="#FFE66D" stroke="#2B2D42" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="50" cy="48" r="13" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+    <!-- Cute star in center -->
+    <polygon points="50,40 53,46 59,46 54,50 56,56 50,52 44,56 46,50 41,46 47,46" fill="#FF5E62" />
+    <!-- Specular highlight shine -->
+    <path d="M36 22 A30 30 0 0 1 60 16" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+    <circle cx="67" cy="20" r="2.5" fill="#FFFFFF" opacity="0.85"/>
   </svg>`,
 
   "bike": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <circle cx="28" cy="68" r="18" fill="none" stroke="#374151" stroke-width="5"/>
-    <circle cx="28" cy="68" r="14" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="2"/>
-    <circle cx="28" cy="68" r="4" fill="#4ECDC4"/>
-    <circle cx="72" cy="68" r="18" fill="none" stroke="#374151" stroke-width="5"/>
-    <circle cx="72" cy="68" r="14" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="2"/>
-    <circle cx="72" cy="68" r="4" fill="#4ECDC4"/>
-    <!-- Bike frame -->
-    <path d="M28 68 L46 44 L68 44 L72 68 M46 44 L52 68 M52 68 L28 68" fill="none" stroke="#FF4757" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M68 44 L72 32 L66 30" fill="none" stroke="#2ED573" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M43 40 L50 40" stroke="#2F3542" stroke-width="6" stroke-linecap="round"/>
+    <!-- Bike shadow -->
+    <ellipse cx="50" cy="90" rx="42" ry="5" fill="#E2E8F0" />
+    <!-- Back wheel -->
+    <circle cx="26" cy="64" r="18" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3.5"/>
+    <circle cx="26" cy="64" r="10" fill="#E5E7EB" stroke="#2B2D42" stroke-width="2"/>
+    <circle cx="26" cy="64" r="4" fill="#FF6B6B" stroke="#2B2D42" stroke-width="2"/>
+    <line x1="26" y1="46" x2="26" y2="82" stroke="#94A3B8" stroke-width="2"/>
+    <line x1="8" y1="64" x2="44" y2="64" stroke="#94A3B8" stroke-width="2"/>
+    <!-- Front wheel -->
+    <circle cx="74" cy="64" r="18" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3.5"/>
+    <circle cx="74" cy="64" r="10" fill="#E5E7EB" stroke="#2B2D42" stroke-width="2"/>
+    <circle cx="74" cy="64" r="4" fill="#FF6B6B" stroke="#2B2D42" stroke-width="2"/>
+    <line x1="74" y1="46" x2="74" y2="82" stroke="#94A3B8" stroke-width="2"/>
+    <line x1="56" y1="64" x2="92" y2="64" stroke="#94A3B8" stroke-width="2"/>
+    <!-- Bike Frame -->
+    <path d="M26 64 L46 42 L68 42 L74 64 M46 42 L52 64 M52 64 L26 64" fill="none" stroke="#FF5E62" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26 64 L46 42 L68 42 L74 64 M46 42 L52 64 M52 64 L26 64" fill="none" stroke="#2B2D42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Handlebar & grips -->
+    <path d="M68 42 L73 30 L66 28" fill="none" stroke="#2B2D42" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Seat -->
+    <path d="M41 38 C44 36 51 36 54 39" fill="none" stroke="#2B2D42" stroke-width="6" stroke-linecap="round"/>
     <!-- Cute bell basket -->
-    <rect x="68" y="34" width="10" height="9" rx="2" fill="#FFA502" />
+    <rect x="71" y="32" width="12" height="10" rx="3" fill="#FFE66D" stroke="#2B2D42" stroke-width="2.5"/>
+    <line x1="77" y1="32" x2="77" y2="42" stroke="#2B2D42" stroke-width="1.5"/>
   </svg>`,
 
   "book": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <path d="M12 25 C30 20 45 28 50 32 C55 28 70 20 88 25 L88 75 C70 70 55 78 50 82 C45 78 30 70 12 75 Z" fill="#4A90E2"/>
-    <path d="M14 27 C30 22 45 30 50 34 C55 30 70 22 86 27 L86 73 C70 68 55 76 50 80 C45 76 30 68 14 73 Z" fill="#FFFDF0"/>
-    <line x1="50" y1="34" x2="50" y2="80" stroke="#E2E8F0" stroke-width="2"/>
-    <!-- Book lines -->
-    <line x1="22" y1="40" x2="42" y2="40" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
-    <line x1="22" y1="50" x2="40" y2="50" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
-    <line x1="22" y1="60" x2="38" y2="60" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
-    <line x1="58" y1="40" x2="78" y2="40" stroke="#2ECC71" stroke-width="3" stroke-linecap="round"/>
-    <line x1="58" y1="50" x2="76" y2="50" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
-    <line x1="58" y1="60" x2="74" y2="60" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
-    <!-- Bookmark ribbon -->
-    <path d="M50 32 L50 65 L46 60 L42 65 L42 32" fill="#FF4757"/>
+    <!-- Book shadow -->
+    <ellipse cx="50" cy="88" rx="40" ry="6" fill="#E2E8F0" />
+    <!-- Blue cover back -->
+    <path d="M12 28 C30 22 46 28 50 32 C54 28 70 22 88 28 L88 78 C70 72 54 78 50 82 C46 78 30 72 12 78 Z" fill="#3B82F6" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Pages -->
+    <path d="M15 31 C32 25 47 31 50 34 C53 31 68 25 85 31 L85 75 C68 69 53 75 50 78 C47 75 32 69 15 75 Z" fill="#FFFDF0" stroke="#2B2D42" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Spine divider -->
+    <line x1="50" y1="34" x2="50" y2="78" stroke="#2B2D42" stroke-width="2.5"/>
+    <!-- Colorful lines of text -->
+    <line x1="22" y1="42" x2="42" y2="40" stroke="#FF5E62" stroke-width="3" stroke-linecap="round"/>
+    <line x1="22" y1="52" x2="40" y2="50" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <line x1="22" y1="62" x2="38" y2="60" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <line x1="58" y1="40" x2="78" y2="42" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="58" y1="50" x2="76" y2="52" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <line x1="58" y1="60" x2="74" y2="62" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <!-- Red bookmark ribbon hanging down -->
+    <path d="M50 34 L50 68 L46 63 L42 68 L42 34" fill="#FF4757" stroke="#2B2D42" stroke-width="2"/>
+    <!-- Star badge on left page -->
+    <polygon points="32,46 34,50 38,50 35,53 36,57 32,54 28,57 29,53 26,50 30,50" fill="#FFE66D" stroke="#2B2D42" stroke-width="1.5"/>
   </svg>`,
 
   "Bill": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Boy face -->
-    <circle cx="50" cy="50" r="32" fill="#FFDFBA"/>
-    <!-- Cap -->
-    <path d="M22 46 C22 26 40 20 56 20 C72 20 78 30 78 46 Z" fill="#3B82F6"/>
-    <path d="M52 26 C68 26 84 32 88 38 C75 42 62 38 52 26 Z" fill="#2563EB"/>
-    <!-- Eyes -->
-    <circle cx="38" cy="52" r="4.5" fill="#1F2937"/>
-    <circle cx="62" cy="52" r="4.5" fill="#1F2937"/>
-    <circle cx="40" cy="50" r="1.5" fill="#FFFFFF"/>
-    <circle cx="64" cy="50" r="1.5" fill="#FFFFFF"/>
-    <!-- Cheeks -->
-    <circle cx="32" cy="60" r="4" fill="#FF8A80" opacity="0.6"/>
-    <circle cx="68" cy="60" r="4" fill="#FF8A80" opacity="0.6"/>
-    <!-- Big cute smile -->
-    <path d="M42 64 Q50 72 58 64" fill="none" stroke="#B91C1C" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- T-shirt collar -->
-    <path d="M30 80 Q50 92 70 80 L76 96 L24 96 Z" fill="#10B981"/>
+    <!-- Boy shadow -->
+    <ellipse cx="50" cy="94" rx="28" ry="5" fill="#E2E8F0" />
+    <!-- T-shirt collar & body -->
+    <path d="M26 80 Q50 94 74 80 L80 96 L20 96 Z" fill="#10B981" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M38 80 Q50 88 62 80" fill="none" stroke="#2B2D42" stroke-width="3" stroke-linecap="round"/>
+    <!-- Head -->
+    <circle cx="50" cy="50" r="30" fill="#FFDFBA" stroke="#2B2D42" stroke-width="3.5"/>
+    <!-- Ears -->
+    <circle cx="21" cy="52" r="6" fill="#FFDFBA" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="79" cy="52" r="6" fill="#FFDFBA" stroke="#2B2D42" stroke-width="3"/>
+    <!-- Baseball Cap -->
+    <path d="M22 46 C22 24 38 18 56 18 C72 18 78 28 78 46 Z" fill="#3B82F6" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M52 24 C68 24 84 30 89 36 C77 40 64 36 52 24 Z" fill="#2563EB" stroke="#2B2D42" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="50" cy="18" r="3.5" fill="#FFE66D" stroke="#2B2D42" stroke-width="2"/>
+    <!-- Cute Eyes -->
+    <ellipse cx="38" cy="50" rx="4.5" ry="5.5" fill="#2B2D42"/>
+    <circle cx="40" cy="48" r="1.8" fill="#FFFFFF"/>
+    <ellipse cx="62" cy="50" rx="4.5" ry="5.5" fill="#2B2D42"/>
+    <circle cx="64" cy="48" r="1.8" fill="#FFFFFF"/>
+    <!-- Cute rosy cheeks -->
+    <circle cx="32" cy="58" r="4.5" fill="#FF8A80" opacity="0.6"/>
+    <circle cx="68" cy="58" r="4.5" fill="#FF8A80" opacity="0.6"/>
+    <!-- Happy Smile -->
+    <path d="M42 60 Q50 70 58 60" fill="none" stroke="#2B2D42" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M44 61 Q50 67 56 61" fill="#FF5E62" />
   </svg>`,
 
   // UNIT 2: Cc
   "cake": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Cake layers -->
-    <rect x="20" y="55" width="60" height="28" rx="6" fill="#F472B6"/>
-    <rect x="25" y="38" width="50" height="22" rx="5" fill="#FBCFE8"/>
-    <!-- White frosting drips -->
-    <path d="M25 45 Q31 52 37 45 Q43 52 50 45 Q57 52 63 45 Q69 52 75 45 L75 38 L25 38 Z" fill="#FFFFFF"/>
-    <path d="M20 62 Q27 70 35 62 Q42 70 50 62 Q57 70 65 62 Q72 70 80 62 L80 55 L20 55 Z" fill="#FDF2F8"/>
+    <!-- Plate shadow -->
+    <ellipse cx="50" cy="88" rx="42" ry="6" fill="#E2E8F0"/>
+    <ellipse cx="50" cy="84" rx="38" ry="6" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+    <!-- Cake bottom layer -->
+    <path d="M20 54 L20 80 Q50 86 80 80 L80 54 Q50 60 20 54 Z" fill="#F472B6" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- White frosting bottom -->
+    <path d="M20 58 Q35 66 50 58 Q65 66 80 58 L80 54 Q50 60 20 54 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="2.5"/>
+    <!-- Cake top layer -->
+    <path d="M28 36 L28 54 Q50 60 72 54 L72 36 Q50 42 28 36 Z" fill="#FBCFE8" stroke="#2B2D42" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M28 40 Q40 48 50 40 Q60 48 72 40 L72 36 Q50 42 28 36 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="2"/>
     <!-- Strawberry on top -->
-    <circle cx="50" cy="28" r="8" fill="#EF4444"/>
-    <path d="M50 20 L48 16 M50 20 L52 16" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="48" cy="27" r="1" fill="#FEF08A"/>
-    <circle cx="52" cy="29" r="1" fill="#FEF08A"/>
-    <!-- Plate -->
-    <ellipse cx="50" cy="85" rx="38" ry="6" fill="#E2E8F0"/>
+    <circle cx="50" cy="26" r="9" fill="#EF4444" stroke="#2B2D42" stroke-width="3"/>
+    <path d="M50 17 L47 12 M50 17 L53 12" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="47" cy="24" r="1.2" fill="#FEF08A"/>
+    <circle cx="53" cy="27" r="1.2" fill="#FEF08A"/>
   </svg>`,
 
   "car": `<svg viewBox="0 0 100 100" class="vocab-svg">
+    <!-- Car shadow -->
+    <ellipse cx="50" cy="88" rx="42" ry="6" fill="#E2E8F0"/>
     <!-- Car body -->
-    <path d="M15 62 L20 48 C22 42 28 36 36 34 L64 34 C72 36 78 42 80 48 L86 56 C89 57 91 60 91 64 L91 70 C91 73 89 74 86 74 L14 74 C11 74 9 72 9 68 L9 65 C9 63 12 62 15 62 Z" fill="#EF4444"/>
+    <path d="M12 62 L18 46 C21 38 28 32 38 32 L62 32 C72 32 78 38 82 46 L88 56 C91 58 92 61 92 65 L92 72 C92 75 89 76 86 76 L14 76 C11 76 8 74 8 70 L8 65 C8 63 10 62 12 62 Z" fill="#EF4444" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
     <!-- Windows -->
-    <path d="M35 38 L48 38 L48 50 L27 50 C29 44 33 39 35 38 Z" fill="#67E8F9"/>
-    <path d="M52 38 L65 38 C68 40 71 45 73 50 L52 50 Z" fill="#67E8F9"/>
-    <!-- Wheels -->
-    <circle cx="28" cy="74" r="11" fill="#1F2937"/>
-    <circle cx="28" cy="74" r="5" fill="#E5E7EB"/>
-    <circle cx="72" cy="74" r="11" fill="#1F2937"/>
-    <circle cx="72" cy="74" r="5" fill="#E5E7EB"/>
+    <path d="M36 36 L48 36 L48 48 L26 48 C28 42 32 37 36 36 Z" fill="#67E8F9" stroke="#2B2D42" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M52 36 L64 36 C68 38 72 43 74 48 L52 48 Z" fill="#67E8F9" stroke="#2B2D42" stroke-width="2.5" stroke-linejoin="round"/>
     <!-- Headlight -->
-    <circle cx="88" cy="63" r="3" fill="#FBBF24"/>
+    <circle cx="89" cy="63" r="3.5" fill="#FBBF24" stroke="#2B2D42" stroke-width="2"/>
+    <!-- Wheels -->
+    <circle cx="28" cy="74" r="12" fill="#2B2D42" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="28" cy="74" r="6" fill="#E5E7EB" stroke="#2B2D42" stroke-width="2"/>
+    <circle cx="72" cy="74" r="12" fill="#2B2D42" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="72" cy="74" r="6" fill="#E5E7EB" stroke="#2B2D42" stroke-width="2"/>
   </svg>`,
 
   "cat": `<svg viewBox="0 0 100 100" class="vocab-svg">
+    <!-- Cat shadow -->
+    <ellipse cx="50" cy="90" rx="34" ry="5" fill="#E2E8F0"/>
     <!-- Ears -->
-    <polygon points="26,38 32,16 48,30" fill="#F97316"/>
+    <polygon points="26,38 32,16 48,30" fill="#FB923C" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
     <polygon points="30,34 35,22 44,30" fill="#FDE047"/>
-    <polygon points="74,38 68,16 52,30" fill="#F97316"/>
+    <polygon points="74,38 68,16 52,30" fill="#FB923C" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
     <polygon points="70,34 65,22 56,30" fill="#FDE047"/>
     <!-- Face -->
-    <ellipse cx="50" cy="52" rx="30" ry="26" fill="#FB923C"/>
+    <ellipse cx="50" cy="54" rx="32" ry="26" fill="#FB923C" stroke="#2B2D42" stroke-width="3.5"/>
     <!-- Eyes -->
-    <ellipse cx="40" cy="48" rx="4" ry="5.5" fill="#065F46"/>
-    <circle cx="41" cy="46" r="1.5" fill="#FFFFFF"/>
-    <ellipse cx="60" cy="48" rx="4" ry="5.5" fill="#065F46"/>
-    <circle cx="61" cy="46" r="1.5" fill="#FFFFFF"/>
+    <ellipse cx="38" cy="48" rx="4.5" ry="6" fill="#2B2D42"/>
+    <circle cx="40" cy="46" r="1.8" fill="#FFFFFF"/>
+    <ellipse cx="62" cy="48" rx="4.5" ry="6" fill="#2B2D42"/>
+    <circle cx="64" cy="46" r="1.8" fill="#FFFFFF"/>
     <!-- Nose & Mouth -->
-    <polygon points="50,56 47,53 53,53" fill="#EC4899"/>
-    <path d="M46 58 Q50 62 50 56 Q50 62 54 58" fill="none" stroke="#7C2D12" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="50,56 46,52 54,52" fill="#EC4899"/>
+    <path d="M44 58 Q50 63 50 56 Q50 63 56 58" fill="none" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Rosy cheeks -->
+    <circle cx="28" cy="58" r="4.5" fill="#FF8A80" opacity="0.6"/>
+    <circle cx="72" cy="58" r="4.5" fill="#FF8A80" opacity="0.6"/>
     <!-- Whiskers -->
-    <line x1="34" y1="53" x2="16" y2="50" stroke="#7C2D12" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="34" y1="58" x2="18" y2="61" stroke="#7C2D12" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="66" y1="53" x2="84" y2="50" stroke="#7C2D12" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="66" y1="58" x2="82" y2="61" stroke="#7C2D12" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="32" y1="54" x2="14" y2="51" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="32" y1="59" x2="16" y2="62" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="68" y1="54" x2="86" y2="51" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="68" y1="59" x2="84" y2="62" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
   </svg>`,
 
   "cup": `<svg viewBox="0 0 100 100" class="vocab-svg">
+    <!-- Saucer shadow -->
+    <ellipse cx="50" cy="90" rx="38" ry="6" fill="#E2E8F0"/>
+    <ellipse cx="50" cy="85" rx="35" ry="6" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
     <!-- Cup body -->
-    <path d="M22 36 L28 72 C30 78 38 82 50 82 C62 82 70 78 72 72 L78 36 Z" fill="#06B6D4"/>
-    <!-- Pattern heart on cup -->
-    <path d="M50 54 A3 3 0 0 0 46 50 A3 3 0 0 0 43 54 Q43 58 50 64 Q57 58 57 54 A3 3 0 0 0 54 50 A3 3 0 0 0 50 54 Z" fill="#FEE2E2"/>
+    <path d="M22 36 L27 72 C29 78 38 82 50 82 C62 82 71 78 73 72 L78 36 Z" fill="#06B6D4" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
     <!-- Handle -->
-    <path d="M74 42 C86 42 88 64 71 66" fill="none" stroke="#0891B2" stroke-width="6" stroke-linecap="round"/>
-    <!-- Steam -->
+    <path d="M74 42 C87 42 89 65 72 67" fill="none" stroke="#2B2D42" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M74 42 C87 42 89 65 72 67" fill="none" stroke="#0891B2" stroke-width="3" stroke-linecap="round"/>
+    <!-- Pattern heart on cup -->
+    <path d="M50 54 A3 3 0 0 0 46 50 A3 3 0 0 0 43 54 Q43 58 50 64 Q57 58 57 54 A3 3 0 0 0 54 50 A3 3 0 0 0 50 54 Z" fill="#FFE4E6" stroke="#2B2D42" stroke-width="1.5"/>
+    <!-- Warm steam -->
     <path d="M40 28 Q44 20 40 14" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
     <path d="M50 28 Q54 18 50 12" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
     <path d="M60 28 Q64 20 60 14" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
-    <!-- Saucer -->
-    <ellipse cx="50" cy="85" rx="34" ry="5" fill="#E2E8F0"/>
   </svg>`,
 
   // UNIT 3: Aa
   "apple": `<svg viewBox="0 0 100 100" class="vocab-svg">
+    <!-- Apple shadow -->
+    <ellipse cx="50" cy="90" rx="32" ry="5" fill="#E2E8F0"/>
     <!-- Apple body -->
-    <path d="M50 32 C38 18 18 26 18 46 C18 72 38 84 50 84 C62 84 82 72 82 46 C82 26 62 18 50 32 Z" fill="#EF4444"/>
+    <path d="M50 32 C38 18 16 26 16 48 C16 74 38 84 50 84 C62 84 84 74 84 48 C84 26 62 18 50 32 Z" fill="#EF4444" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
     <!-- Stem & Leaf -->
-    <path d="M50 32 Q52 18 58 14" fill="none" stroke="#78350F" stroke-width="4" stroke-linecap="round"/>
-    <path d="M54 22 C64 16 72 20 70 26 C60 28 56 24 54 22 Z" fill="#22C55E"/>
+    <path d="M50 32 Q52 16 58 12" fill="none" stroke="#2B2D42" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M54 22 C65 15 74 19 72 26 C60 28 56 24 54 22 Z" fill="#22C55E" stroke="#2B2D42" stroke-width="2.5" stroke-linejoin="round"/>
     <!-- Highlight shine -->
-    <path d="M28 38 C24 44 24 54 26 60" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <path d="M28 38 C24 44 24 54 26 60" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
   </svg>`,
 
   "bag": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Backpack body -->
-    <path d="M24 40 C24 24 35 18 50 18 C65 18 76 24 76 40 L78 76 C78 82 72 86 66 86 L34 86 C28 86 22 82 22 76 Z" fill="#8B5CF6"/>
-    <!-- Front pocket -->
-    <rect x="30" y="52" width="40" height="26" rx="6" fill="#A78BFA"/>
-    <line x1="32" y1="58" x2="68" y2="58" stroke="#FDE047" stroke-width="3"/>
+    <!-- Backpack shadow -->
+    <ellipse cx="50" cy="90" rx="36" ry="6" fill="#E2E8F0"/>
     <!-- Straps handle -->
-    <path d="M40 18 L40 12 C40 9 44 8 50 8 C56 8 60 9 60 12 L60 18" fill="none" stroke="#6D28D9" stroke-width="4" stroke-linecap="round"/>
+    <path d="M38 18 L38 10 C38 7 43 6 50 6 C57 6 62 7 62 10 L62 18" fill="none" stroke="#2B2D42" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Backpack body -->
+    <path d="M22 38 C22 22 34 16 50 16 C66 16 78 22 78 38 L80 78 C80 84 74 86 68 86 L32 86 C26 86 20 84 20 78 Z" fill="#8B5CF6" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Front pocket -->
+    <rect x="28" y="50" width="44" height="28" rx="7" fill="#A78BFA" stroke="#2B2D42" stroke-width="3"/>
+    <line x1="30" y1="56" x2="70" y2="56" stroke="#2B2D42" stroke-width="2.5"/>
     <!-- Star badge -->
-    <circle cx="50" cy="68" r="4" fill="#FBBF24"/>
+    <polygon points="50,62 52,66 56,66 53,69 54,73 50,70 46,73 47,69 44,66 48,66" fill="#FBBF24" stroke="#2B2D42" stroke-width="1.5"/>
   </svg>`,
 
   "can": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Can cylinder -->
-    <rect x="30" y="26" width="40" height="52" fill="#E11D48"/>
-    <ellipse cx="50" cy="26" rx="20" ry="7" fill="#CBD5E1" stroke="#94A3B8" stroke-width="2"/>
-    <ellipse cx="50" cy="78" rx="20" ry="7" fill="#BE123C"/>
+    <!-- Can shadow -->
+    <ellipse cx="50" cy="88" rx="30" ry="5" fill="#E2E8F0"/>
+    <!-- Can cylinder body -->
+    <path d="M28 26 L28 76 C28 82 38 86 50 86 C62 86 72 82 72 76 L72 26 Z" fill="#E11D48" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="26" rx="22" ry="8" fill="#CBD5E1" stroke="#2B2D42" stroke-width="3"/>
     <!-- Pull ring -->
-    <ellipse cx="50" cy="26" rx="6" ry="3" fill="#64748B"/>
+    <ellipse cx="50" cy="26" rx="6" ry="3" fill="#64748B" stroke="#2B2D42" stroke-width="1.5"/>
     <!-- Wave pattern -->
-    <path d="M30 46 Q50 56 70 46 L70 58 Q50 68 30 58 Z" fill="#FFE4E6"/>
+    <path d="M28 46 Q50 56 72 46 L72 58 Q50 68 28 58 Z" fill="#FFE4E6"/>
     <text x="50" y="55" font-family="'Fredoka', sans-serif" font-weight="700" font-size="11" fill="#E11D48" text-anchor="middle">SODA</text>
   </svg>`,
 
   "hat": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Hat brim -->
-    <ellipse cx="50" cy="70" rx="42" ry="14" fill="#F59E0B"/>
+    <!-- Hat shadow -->
+    <ellipse cx="50" cy="88" rx="44" ry="6" fill="#E2E8F0"/>
     <!-- Hat crown -->
-    <path d="M28 66 C28 35 34 26 50 26 C66 26 72 35 72 66 Z" fill="#FBBF24"/>
+    <path d="M26 64 C26 34 32 24 50 24 C68 24 74 34 74 64 Z" fill="#FBBF24" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
     <!-- Ribbon -->
-    <path d="M28 62 C34 59 66 59 72 62 L72 67 C66 64 34 64 28 67 Z" fill="#EF4444"/>
-    <!-- Ribbon bow -->
-    <circle cx="68" cy="62" r="4" fill="#DC2626"/>
+    <path d="M26 58 C34 54 66 54 74 58 L74 65 C66 61 34 61 26 65 Z" fill="#EF4444" stroke="#2B2D42" stroke-width="2"/>
+    <!-- Hat brim -->
+    <ellipse cx="50" cy="68" rx="44" ry="14" fill="#F59E0B" stroke="#2B2D42" stroke-width="3.5"/>
+    <path d="M12 68 Q50 82 88 68" fill="none" stroke="#2B2D42" stroke-width="2.5" opacity="0.4"/>
   </svg>`,
 
   // UNIT 4: Dd

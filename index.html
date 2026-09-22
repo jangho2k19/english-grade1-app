@@ -54,48 +54,50 @@
       background-size: 24px 24px;
     }
 
-    /* HEADER */
+    /* HEADER - SLIM, SLEEK & COMPACT */
     header {
       background: var(--primary-gradient);
       color: white;
-      padding: 0.8rem 1.8rem;
-      box-shadow: 0 6px 20px rgba(255, 94, 98, 0.3);
+      padding: 0.45rem 1.4rem;
+      box-shadow: 0 4px 16px rgba(255, 94, 98, 0.25);
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: all 0.3s ease;
     }
 
     .header-container {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-family: 'Fredoka', cursive;
-      font-size: 1.6rem;
+      font-size: 1.35rem;
       font-weight: 700;
       cursor: pointer;
       user-select: none;
       transition: transform 0.2s;
+      white-space: nowrap;
     }
 
     .logo:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
 
     .logo span {
       background: var(--accent);
       color: #92400E;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 0.85rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.78rem;
       font-weight: 700;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
@@ -103,24 +105,26 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .star-counter-badge {
       background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(8px);
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      padding: 6px 14px;
-      border-radius: 20px;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      padding: 4px 10px;
+      border-radius: 16px;
       font-family: 'Fredoka', cursive;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       color: #FFFDF0;
       cursor: pointer;
       transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .star-counter-badge:hover {
@@ -128,22 +132,26 @@
       background: rgba(255, 255, 255, 0.35);
     }
 
-    .star-counter-badge .star-icon {
-      font-size: 1.3rem;
-      animation: spin-soft 3s infinite ease-in-out alternate;
+    .star-counter-badge.star-pop {
+      animation: star-bounce-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    @keyframes spin-soft {
-      0% { transform: scale(1) rotate(-8deg); }
-      100% { transform: scale(1.15) rotate(8deg); }
+    @keyframes star-bounce-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.25) rotate(10deg); background: rgba(255, 230, 109, 0.6); }
+      100% { transform: scale(1); }
+    }
+
+    .star-counter-badge .star-icon {
+      font-size: 1.15rem;
     }
 
     .nav-tabs {
       display: flex;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.22);
-      padding: 5px;
-      border-radius: 30px;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 3px;
+      border-radius: 25px;
       backdrop-filter: blur(10px);
     }
 
@@ -151,43 +159,56 @@
       border: none;
       background: transparent;
       color: white;
-      padding: 7px 16px;
-      border-radius: 20px;
+      padding: 5px 12px;
+      border-radius: 18px;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
     }
 
     .nav-btn.active, .nav-btn:hover {
       background: white;
       color: var(--primary);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
       transform: translateY(-1px);
     }
 
-    .voice-settings-btn {
-      background: rgba(255, 255, 255, 0.22);
-      border: 2px solid rgba(255, 255, 255, 0.4);
+    .header-utility-btns {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .header-action-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
       color: white;
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 0.95rem;
       transition: all 0.2s;
     }
 
-    .voice-settings-btn:hover {
+    .header-action-btn:hover {
       background: white;
       color: var(--primary);
-      transform: rotate(30deg);
+      transform: scale(1.08);
+    }
+
+    .header-action-btn.active {
+      background: var(--accent);
+      color: #92400E;
+      border-color: white;
     }
 
     /* MAIN CONTENT */
@@ -203,24 +224,36 @@
     .section-header-banner {
       background: white;
       border-radius: var(--radius);
-      padding: 1.4rem 1.8rem;
-      margin-bottom: 1.8rem;
+      padding: 0.85rem 1.4rem;
+      margin-bottom: 1.2rem;
       box-shadow: var(--shadow-sm);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 12px;
       border: 2px solid #E2E8F0;
     }
 
     .section-title {
       font-family: 'Fredoka', cursive;
-      font-size: 1.8rem;
+      font-size: 1.45rem;
       color: var(--dark);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge-grade1 {
+      background: var(--accent);
+      color: #92400E;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .voice-status-pill {
@@ -479,10 +512,17 @@
     }
 
     .vocab-card:hover {
-      transform: translateY(-6px) scale(1.02);
+      transform: translateY(-5px) scale(1.02);
       border-color: var(--primary);
       background: white;
-      box-shadow: 0 12px 25px rgba(255, 94, 98, 0.2);
+      box-shadow: 0 12px 25px rgba(255, 94, 98, 0.18);
+    }
+
+    .vocab-card.speaking {
+      transform: scale(1.08) !important;
+      border-color: var(--primary) !important;
+      background: #FFF5F5 !important;
+      box-shadow: 0 0 0 5px rgba(255, 94, 98, 0.28), 0 16px 32px rgba(255, 94, 98, 0.25) !important;
     }
 
     .vocab-illustration-box {
@@ -500,7 +540,17 @@
     }
 
     .vocab-card:hover .vocab-illustration-box {
-      transform: scale(1.1) rotate(2deg);
+      transform: scale(1.08) rotate(2deg);
+    }
+
+    .vocab-card.speaking .vocab-illustration-box {
+      animation: vocab-bounce-speak 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes vocab-bounce-speak {
+      0%, 100% { transform: scale(1.1) rotate(0deg); }
+      30% { transform: scale(1.2) rotate(-6deg); }
+      70% { transform: scale(1.2) rotate(6deg); }
     }
 
     .vocab-svg {
@@ -1465,12 +1515,132 @@
       margin-top: auto;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 680px) {
-      main { padding: 1rem; }
-      header { padding: 0.8rem 1rem; }
-      .header-container { flex-direction: column; gap: 10px; }
-      .unit-header-banner { flex-direction: column; text-align: center; gap: 15px; }
+    /* CELEBRATION STAR REWARD TOAST */
+    .star-toast-container {
+      position: fixed;
+      top: 65px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-35px);
+      background: white;
+      border: 3px solid #F59E0B;
+      box-shadow: 0 16px 40px rgba(245, 158, 11, 0.35);
+      border-radius: 30px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .star-toast-container.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .star-burst-icon {
+      font-size: 2.2rem;
+      animation: star-spin-bounce 1s infinite alternate cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes star-spin-bounce {
+      0% { transform: scale(1) rotate(-10deg); }
+      100% { transform: scale(1.3) rotate(15deg); }
+    }
+
+    /* PRESENTATION & MINIMALIST MODE */
+    body.presentation-mode {
+      background-color: #F8FAFC;
+    }
+
+    body.presentation-mode header {
+      padding: 0.3rem 1rem;
+      background: #1E293B;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    body.presentation-mode .section-header-banner {
+      padding: 0.6rem 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    body.presentation-mode main {
+      max-width: 1400px;
+      padding: 1rem 1.2rem;
+    }
+
+    body.presentation-mode .vocab-grid {
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.8rem;
+    }
+
+    body.presentation-mode .vocab-card {
+      padding: 1.8rem 1.4rem;
+    }
+
+    body.presentation-mode .vocab-illustration-box {
+      width: 135px;
+      height: 135px;
+    }
+
+    body.presentation-mode .vocab-word {
+      font-size: 1.9rem;
+    }
+
+    body.presentation-mode .vocab-vi {
+      font-size: 1.2rem;
+    }
+
+    body.presentation-mode .sentence-en {
+      font-size: 1.55rem;
+    }
+
+    body.presentation-mode .sentence-vi {
+      font-size: 1.1rem;
+    }
+
+    .floating-exit-presentation {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      background: #EF4444;
+      color: white;
+      border: 2px solid white;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.45);
+      z-index: 1001;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+
+    .floating-exit-presentation:hover {
+      transform: scale(1.06);
+      background: #DC2626;
+    }
+
+    body.presentation-mode .floating-exit-presentation {
+      display: flex;
+    }
+
+    /* RESPONSIVE OPTIMIZATIONS */
+    @media (max-width: 768px) {
+      main { padding: 1rem 0.8rem; }
+      header { padding: 0.4rem 0.8rem; }
+      .header-container { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+      .logo { font-size: 1.15rem; }
+      .nav-tabs { overflow-x: auto; max-width: 100%; gap: 3px; padding: 2px; }
+      .nav-btn { padding: 4px 9px; font-size: 0.82rem; }
+      .star-counter-badge { padding: 3px 8px; font-size: 0.85rem; }
+      .unit-header-banner { flex-direction: column; text-align: center; gap: 12px; }
       .unit-phonics-badge { align-self: center; }
       .options-grid { grid-template-columns: 1fr; }
       .sentence-card { flex-direction: column; align-items: flex-start; }
@@ -1480,8 +1650,22 @@
 </head>
 <body>
 
+  <!-- FLOATING EXIT BUTTON FOR PRESENTATION MODE -->
+  <button class="floating-exit-presentation" onclick="togglePresentationMode()" title="Thoát chế độ trình chiếu">
+    <span>✕</span> Thoát trình chiếu
+  </button>
+
+  <!-- CELEBRATION STAR REWARD TOAST -->
+  <div id="star-reward-toast" class="star-toast-container">
+    <div class="star-burst-icon">🌟</div>
+    <div>
+      <div style="font-family: 'Fredoka', cursive; font-size: 1.2rem; color: #B45309;" id="star-toast-title">Bé Giỏi Quá! +1 Sao ⭐</div>
+      <div style="font-size: 0.85rem; color: #64748B; font-weight: 600;" id="star-toast-desc">Đã hoàn thành xuất sắc bài học!</div>
+    </div>
+  </div>
+
   <!-- HEADER -->
-  <header>
+  <header id="main-header">
     <div class="header-container">
       <div class="logo" onclick="showView('units-view')">
         🎈 Tiếng Anh 1 <span>Global Success</span>
@@ -1489,7 +1673,7 @@
 
       <div class="header-right">
         <!-- Star score button -->
-        <div class="star-counter-badge" title="Tổng số sao đạt được!" onclick="showView('units-view')">
+        <div class="star-counter-badge" id="header-star-badge" title="Tổng số sao đạt được!" onclick="showView('units-view')">
           <span class="star-icon">⭐</span>
           <span id="header-total-stars">0</span> Sao
         </div>
@@ -1502,10 +1686,18 @@
           <button class="nav-btn" id="tab-songs" onclick="showSongsView()">🎵 Bài hát</button>
         </nav>
 
-        <!-- Voice Settings Button -->
-        <button class="voice-settings-btn" title="Cài đặt giọng đọc nữ & tốc độ" onclick="openVoiceModal()" aria-label="Cài đặt giọng đọc">
-          ⚙️
-        </button>
+        <!-- Utility Buttons: Voice, Presentation, Fullscreen -->
+        <div class="header-utility-btns">
+          <button class="header-action-btn" title="Cài đặt giọng đọc nữ & tốc độ" onclick="openVoiceModal()" aria-label="Cài đặt giọng đọc">
+            ⚙️
+          </button>
+          <button class="header-action-btn" id="btn-toggle-presentation" title="Chế độ Giảng dạy / Trình chiếu màn hình lớn" onclick="togglePresentationMode()" aria-label="Chế độ giảng dạy">
+            👁️
+          </button>
+          <button class="header-action-btn" id="btn-toggle-fullscreen" title="Bật/Tắt Toàn màn hình" onclick="toggleFullscreen()" aria-label="Toàn màn hình">
+            ⛶
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -1516,7 +1708,7 @@
     <div id="units-view">
       <div class="section-header-banner">
         <div class="section-title">
-          <span>🎒</span> Các bài học Tiếng Anh Lớp 1:
+          <span>🎒</span> Các bài học Tiếng Anh <span class="badge-grade1">Lớp 1</span>
         </div>
         <div class="voice-status-pill" onclick="openVoiceModal()" title="Nhấp để thay đổi giọng đọc">
           <span>🔊</span> <span id="current-voice-name-pill">Giọng nữ: Đang tải...</span> ✏️
@@ -1542,6 +1734,9 @@
             </button>
             <button class="btn-quick-play" style="background: white; color: var(--purple);" onclick="startFlashcardsForCurrentUnit()">
               🎴 Flashcard Unit này
+            </button>
+            <button class="btn-quick-play" style="background: #FEF08A; color: #854D0E;" onclick="awardCurrentUnitStar()" id="btn-complete-unit" title="Bấm để nhận thưởng sao khi hoàn thành bài">
+              ⭐ Hoàn thành Unit (+1 Sao)
             </button>
           </div>
         </div>
@@ -2073,6 +2268,19 @@
       speakText(word);
     }
 
+    function triggerVocabPronounce(word, element) {
+      if (!word) return;
+      speakWord(word);
+      if (element) {
+        element.classList.remove('speaking');
+        void element.offsetWidth;
+        element.classList.add('speaking');
+        setTimeout(() => {
+          element.classList.remove('speaking');
+        }, 700);
+      }
+    }
+
     function speakText(text, onComplete) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel(); // Stop any pending speech
@@ -2143,7 +2351,7 @@
 
         // Generate 4 mini vector illustrations for preview
         const artPreviews = u.vocab.map(v => `
-          <div class="unit-art-preview-item" title="${v.word}: ${v.translation}">
+          <div class="unit-art-preview-item" title="Bấm để nghe: ${v.word} (${v.translation})" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this)">
             ${getVocabIllustration(v.word)}
           </div>
         `).join('');
@@ -2219,20 +2427,27 @@
       document.getElementById('detail-subtitle').innerText = `Chủ đề & Âm tiết: ${currentUnit.letter} ${currentUnit.phonics}`;
       document.getElementById('detail-letter').innerText = `${currentUnit.letter} ${currentUnit.phonics}`;
 
+      // Update completion star button state
+      const currentStars = earnedStars[currentUnit.unit] || 0;
+      const btnComp = document.getElementById('btn-complete-unit');
+      if (btnComp) {
+        btnComp.innerHTML = currentStars > 0 ? `⭐ Đã đạt ${currentStars}/4 Sao! (+1 Sao)` : `⭐ Hoàn thành Unit (+1 Sao)`;
+      }
+
       // Populate Vocab Grid with Rich SVG Visuals
       const vocabGrid = document.getElementById('detail-vocab-grid');
       vocabGrid.innerHTML = '';
       currentUnit.vocab.forEach(v => {
         const item = document.createElement('div');
         item.className = 'vocab-card';
-        item.onclick = () => speakWord(v.word);
+        item.onclick = () => triggerVocabPronounce(v.word, item);
         item.innerHTML = `
-          <div class="vocab-illustration-box">
+          <div class="vocab-illustration-box" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this.closest('.vocab-card'))">
             ${getVocabIllustration(v.word)}
           </div>
-          <div class="vocab-word">${v.word}</div>
+          <div class="vocab-word" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this.closest('.vocab-card'))">${v.word}</div>
           <div class="vocab-vi">${v.translation}</div>
-          <div class="audio-btn-pill"><span>🔊</span> Nghe đọc</div>
+          <div class="audio-btn-pill"><span>🔊</span> Chạm để nghe</div>
         `;
         vocabGrid.appendChild(item);
       });
@@ -2818,6 +3033,117 @@
       }
       const el = document.getElementById('header-total-stars');
       if (el) el.innerText = total;
+    }
+
+    /* REWARD SOUND & CELEBRATION CHIME (Web Audio API) */
+    function playStarRewardSound() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const notes = [
+          { f: 523.25, t: 0.00, d: 0.18 }, // C5
+          { f: 659.25, t: 0.10, d: 0.18 }, // E5
+          { f: 783.99, t: 0.20, d: 0.18 }, // G5
+          { f: 1046.50, t: 0.30, d: 0.55 } // C6
+        ];
+        notes.forEach(n => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(n.f, now + n.t);
+          gain.gain.setValueAtTime(0.001, now + n.t);
+          gain.gain.linearRampToValueAtTime(0.32, now + n.t + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + n.t);
+          osc.stop(now + n.t + n.d);
+        });
+      } catch (e) {
+        console.warn('Star reward sound error:', e);
+      }
+    }
+
+    let starToastTimer = null;
+    function showStarCelebrationToast(title, desc) {
+      const toast = document.getElementById('star-reward-toast');
+      const tTitle = document.getElementById('star-toast-title');
+      const tDesc = document.getElementById('star-toast-desc');
+      const badge = document.getElementById('header-star-badge');
+
+      if (tTitle) tTitle.innerText = title || "Bé Giỏi Quá! +1 Sao ⭐";
+      if (tDesc) tDesc.innerText = desc || "Chúc mừng bé hoàn thành xuất sắc bài học!";
+
+      if (toast) {
+        toast.classList.add('show');
+        if (starToastTimer) clearTimeout(starToastTimer);
+        starToastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3400);
+      }
+
+      if (badge) {
+        badge.classList.remove('star-pop');
+        void badge.offsetWidth;
+        badge.classList.add('star-pop');
+        setTimeout(() => badge.classList.remove('star-pop'), 800);
+      }
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 85,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function awardCurrentUnitStar() {
+      if (!currentUnit) return;
+      addStar(currentUnit.unit);
+      playStarRewardSound();
+      showStarCelebrationToast("Bé Giỏi Quá! +1 Sao ⭐", `Chúc mừng bé hoàn thành bài học Unit ${currentUnit.unit}!`);
+      const currentStars = earnedStars[currentUnit.unit] || 0;
+      const btnComp = document.getElementById('btn-complete-unit');
+      if (btnComp) {
+        btnComp.innerHTML = `⭐ Đã đạt ${currentStars}/4 Sao! (+1 Sao)`;
+      }
+    }
+
+    /* FULLSCREEN & PRESENTATION MODE */
+    function toggleFullscreen() {
+      const btn = document.getElementById('btn-toggle-fullscreen');
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().then(() => {
+            if (btn) btn.innerText = '🗗';
+          }).catch(err => console.warn('Fullscreen request error:', err));
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().then(() => {
+            if (btn) btn.innerText = '⛶';
+          }).catch(err => console.warn('Exit fullscreen error:', err));
+        }
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      const btn = document.getElementById('btn-toggle-fullscreen');
+      if (btn) {
+        btn.innerText = document.fullscreenElement ? '🗗' : '⛶';
+        btn.title = document.fullscreenElement ? 'Thu nhỏ màn hình' : 'Bật Toàn màn hình';
+      }
+    });
+
+    function togglePresentationMode() {
+      const isPres = document.body.classList.toggle('presentation-mode');
+      const btn = document.getElementById('btn-toggle-presentation');
+      if (btn) {
+        btn.classList.toggle('active', isPres);
+        btn.title = isPres ? 'Tắt Chế độ Giảng dạy' : 'Chế độ Giảng dạy / Trình chiếu màn hình lớn';
+      }
     }
   </script>
 </body>
