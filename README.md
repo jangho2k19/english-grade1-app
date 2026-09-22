@@ -30,6 +30,13 @@
 5. **⭐ Tích lũy sao & Lưu tiến độ (`localStorage`):**
    - Bé làm đúng sẽ nhận được sao thưởng ⭐ theo từng Unit, được lưu tự động trên trình duyệt.
 
+6. **🎵 Bài hát tiếng Anh ca nhạc thực tế kèm lời song ngữ (Songs & Lyrics):**
+   - Bộ sưu tập 6 bài hát thiếu nhi kinh điển (*The ABC Song, Hello Song, Twinkle Twinkle, Head Shoulders Knees and Toes, Wheels on the Bus, Old MacDonald*).
+   - Video ca nhạc hoạt hình thực tế có tiếng hát, nhạc cụ và giai điệu vui nhộn.
+   - Bảng lời bài hát song ngữ (Tiếng Anh - Tiếng Việt) bên dưới video.
+   - Nút "🔊 Luyện phát âm" từng câu giúp bé luyện nói tròn vành rõ chữ theo giọng cô giáo.
+   - Tùy chọn bật nhạc đệm chuông piano (Melody Chime).
+
 ---
 
 ## 🚀 Hướng dẫn chạy ứng dụng

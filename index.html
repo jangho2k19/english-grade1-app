@@ -13,6 +13,7 @@
   <!-- Fallback dữ liệu và thư viện hình minh họa SVG -->
   <script src="./course_data.js"></script>
   <script src="./illustrations.js"></script>
+  <script src="./songs_data.js"></script>
   <style>
     :root {
       --primary: #FF5E62;
@@ -896,6 +897,284 @@
       flex-wrap: wrap;
     }
 
+    /* SONGS VIEW & KARAOKE PLAYER */
+    .songs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .song-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .song-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .song-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .song-theme-badge {
+      background: #EFF6FF;
+      color: #2563EB;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid #BFDBFE;
+    }
+
+    .song-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .song-card h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .song-card-vi {
+      color: var(--light-text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .song-card-desc {
+      font-size: 0.9rem;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .song-card-play-btn {
+      background: #FFF1F2;
+      color: var(--primary);
+      border: 1.5px solid #FECDD3;
+      padding: 8px 16px;
+      border-radius: 14px;
+      font-family: 'Fredoka', cursive;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .song-card:hover .song-card-play-btn {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(255, 94, 98, 0.3);
+    }
+
+    /* SONG PLAYER VIEW */
+    .song-player-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .song-player-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 2px solid #E2E8F0;
+    }
+
+    .song-player-banner {
+      background: linear-gradient(135deg, #FF6B6B, #9D4EDD);
+      color: white;
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 24px rgba(157, 78, 221, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .music-notes-anim {
+      font-size: 2.2rem;
+      animation: note-float 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes note-float {
+      0% { transform: translateY(0) rotate(-10deg); }
+      100% { transform: translateY(-10px) rotate(10deg); }
+    }
+
+    .song-video-frame-box {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: #0F172A;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+      border: 3px solid #E2E8F0;
+    }
+
+    .song-video-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .song-player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-player-play {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(255, 94, 98, 0.35);
+      transition: all 0.2s;
+    }
+
+    .btn-player-play:hover {
+      transform: scale(1.08);
+    }
+
+    .btn-player-play.playing {
+      animation: pulse-ring 1.5s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(255, 94, 98, 0.6); }
+      70% { box-shadow: 0 0 0 16px rgba(255, 94, 98, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 94, 98, 0); }
+    }
+
+    .btn-player-action {
+      background: #F1F5F9;
+      border: 2px solid #CBD5E1;
+      color: var(--dark);
+      padding: 9px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-player-action:hover {
+      background: #E2E8F0;
+    }
+
+    .btn-player-action.active {
+      background: #DCFCE7;
+      border-color: #22C55E;
+      color: #15803D;
+    }
+
+    /* LYRICS LIST */
+    .lyrics-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 480px;
+      overflow-y: auto;
+      padding: 8px 4px;
+    }
+
+    .lyric-item {
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      gap: 15px;
+    }
+
+    .lyric-item:hover {
+      background: #F0FDF4;
+      border-color: #86EFAC;
+      transform: translateX(4px);
+    }
+
+    .lyric-item.active {
+      background: linear-gradient(135deg, #FEF3C7, #FFFBEB) !important;
+      border-color: #F59E0B !important;
+      transform: scale(1.02) !important;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2) !important;
+    }
+
+    .lyric-item.active .lyric-en {
+      color: #B45309 !important;
+      font-size: 1.55rem !important;
+    }
+
+    .lyric-en {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.35rem;
+      color: var(--dark);
+      line-height: 1.3;
+      transition: all 0.2s;
+    }
+
+    .lyric-vi {
+      font-size: 1rem;
+      color: var(--light-text);
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
     /* VOICE SETTINGS MODAL */
     .modal-overlay {
       position: fixed;
@@ -1044,6 +1323,7 @@
           <button class="nav-btn active" id="tab-units" onclick="showView('units-view')">📚 Bài học</button>
           <button class="nav-btn" id="tab-game" onclick="startQuiz()">🎮 Trò chơi</button>
           <button class="nav-btn" id="tab-cards" onclick="startFlashcards()">🎴 Thẻ từ</button>
+          <button class="nav-btn" id="tab-songs" onclick="showSongsView()">🎵 Bài hát</button>
         </nav>
 
         <!-- Voice Settings Button -->
@@ -1226,6 +1506,71 @@
             <button class="speak-btn" style="background: #3B82F6;" onclick="prevCard()">⬅ Thẻ trước</button>
             <button class="speak-btn" style="background: var(--primary);" onclick="speakWord(currentFC.word)">🔊 Nghe phát âm</button>
             <button class="speak-btn" style="background: #3B82F6;" onclick="nextCard()">Thẻ sau ➡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: SONGS & LYRICS -->
+    <div id="songs-view" class="hidden">
+      <!-- Song Catalog -->
+      <div id="songs-catalog-view">
+        <div class="section-header-banner">
+          <div class="section-title">
+            <span>🎵</span> Bài hát Tiếng Anh Lớp 1 (Songs & Lyrics):
+          </div>
+          <div style="font-size: 0.95rem; color: var(--light-text); font-weight: 600;">
+            ✨ Nghe nhạc vui nhộn & hát theo lời bài hát song ngữ có phát âm chuẩn
+          </div>
+        </div>
+
+        <div class="songs-grid" id="songs-grid-container">
+          <!-- Dynamically populated from SONGS_DATA -->
+        </div>
+      </div>
+
+      <!-- Song Player & Karaoke -->
+      <div id="song-player-view" class="hidden">
+        <div class="song-player-wrapper">
+          <button class="back-btn" onclick="backToSongsList()">⬅ Quay lại danh sách bài hát</button>
+
+          <div class="song-player-card">
+            <div class="song-player-banner" id="player-banner">
+              <div>
+                <h2 style="font-family: 'Fredoka'; font-size: 1.9rem; margin-bottom: 4px;" id="player-song-title">The Alphabet Song</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9;" id="player-song-title-vi">Bài ca Bảng chữ cái</p>
+              </div>
+              <div class="music-notes-anim">🎵 🎶 ✨</div>
+            </div>
+
+            <!-- Video ca nhạc hoạt hình có tiếng hát thực tế -->
+            <div class="song-video-frame-box" id="song-video-box">
+              <iframe id="song-video-iframe" class="song-video-iframe" src="" title="Video bài hát thiếu nhi tiếng Anh" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <!-- Quick Practice Options -->
+            <div class="song-player-controls">
+              <button class="btn-player-action" id="btn-play-melody" onclick="toggleMelodyPlayback()" title="Bật/tắt nhạc đệm chuông piano">
+                <span>🎹</span> Nhạc đệm chuông: <strong id="melody-status-text">Tắt</strong>
+              </button>
+              <button class="btn-player-action active" id="btn-toggle-teacher" onclick="toggleTeacherVoice()" title="Bật/tắt giọng cô giáo đọc khi bấm câu">
+                <span>👩‍🏫</span> Giọng cô giáo phát âm: <strong id="teacher-status-text">Bật</strong>
+              </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1.5px solid #E2E8F0; padding-bottom: 0.8rem;">
+              <div style="font-family: 'Fredoka'; font-size: 1.25rem; color: var(--dark);">
+                🎤 Lời bài hát (Bấm vào từng câu để nghe phát âm):
+              </div>
+              <div style="font-size: 0.95rem; color: var(--light-text); font-weight: 700;" id="player-progress-indicator">
+                Câu 1 / 6
+              </div>
+            </div>
+
+            <!-- Lyrics list -->
+            <div class="lyrics-container" id="lyrics-list-container">
+              <!-- Dynamically populated -->
+            </div>
           </div>
         </div>
       </div>
@@ -1621,16 +1966,27 @@
 
     /* VIEW NAVIGATION */
     function showView(viewId) {
-      ['units-view', 'unit-detail-view', 'game-view', 'flashcard-view'].forEach(id => {
-        document.getElementById(id).classList.add('hidden');
+      ['units-view', 'unit-detail-view', 'game-view', 'flashcard-view', 'songs-view'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
       });
-      document.getElementById(viewId).classList.remove('hidden');
+      const targetEl = document.getElementById(viewId);
+      if (targetEl) targetEl.classList.remove('hidden');
+
+      // Stop any song if leaving songs-view
+      if (viewId !== 'songs-view' && typeof stopSong === 'function') {
+        stopSong();
+      }
 
       // Update Nav Tabs
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       if (viewId === 'units-view') document.getElementById('tab-units').classList.add('active');
       if (viewId === 'game-view') document.getElementById('tab-game').classList.add('active');
       if (viewId === 'flashcard-view') document.getElementById('tab-cards').classList.add('active');
+      if (viewId === 'songs-view') {
+        const tabS = document.getElementById('tab-songs');
+        if (tabS) tabS.classList.add('active');
+      }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1906,6 +2262,299 @@
         }
       }
     });
+
+    /* SONGS & KARAOKE PLAYER LOGIC */
+    let currentSong = null;
+    let isPlayingSong = false;
+    let isTeacherSinging = true;
+    let songNoteTimeouts = [];
+    let songLyricTimeouts = [];
+    let activeOscillators = [];
+
+    function showSongsView() {
+      showView('songs-view');
+      document.getElementById('songs-catalog-view').classList.remove('hidden');
+      document.getElementById('song-player-view').classList.add('hidden');
+      renderSongsCatalog();
+    }
+
+    function renderSongsCatalog() {
+      const container = document.getElementById('songs-grid-container');
+      if (!container || typeof SONGS_DATA === 'undefined') return;
+      container.innerHTML = '';
+
+      SONGS_DATA.forEach(song => {
+        const card = document.createElement('div');
+        card.className = 'song-card';
+        card.onclick = () => openSongPlayer(song.id);
+
+        card.innerHTML = `
+          <div class="song-card-header">
+            <span class="song-theme-badge">${song.theme}</span>
+            <span style="font-size: 1.1rem; color: #F59E0B; font-weight: 700;">⭐ ${song.lyrics.length} câu</span>
+          </div>
+          <div class="song-icon-circle" style="background: ${song.color}20;">
+            ${song.icon}
+          </div>
+          <h3>${song.title}</h3>
+          <div class="song-card-vi">${song.titleVi}</div>
+          <div class="song-card-desc">${song.description}</div>
+          <button class="song-card-play-btn">
+            <span>▶️</span> Hát & Xem lời
+          </button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openSongPlayer(songId) {
+      if (typeof SONGS_DATA === 'undefined') return;
+      currentSong = SONGS_DATA.find(s => s.id === songId);
+      if (!currentSong) return;
+
+      document.getElementById('songs-catalog-view').classList.add('hidden');
+      document.getElementById('song-player-view').classList.remove('hidden');
+
+      // Populate Player info
+      document.getElementById('player-song-title').innerText = currentSong.title;
+      document.getElementById('player-song-title-vi').innerText = currentSong.titleVi;
+      document.getElementById('player-banner').style.background = `linear-gradient(135deg, ${currentSong.color}, #7C3AED)`;
+
+      // Load real singing song video
+      const iframe = document.getElementById('song-video-iframe');
+      if (iframe && currentSong.youtubeId) {
+        iframe.src = `https://www.youtube-nocookie.com/embed/${currentSong.youtubeId}?autoplay=1&rel=0`;
+      }
+
+      renderLyricsList();
+      stopMelody();
+    }
+
+    function backToSongsList() {
+      stopSong();
+      const iframe = document.getElementById('song-video-iframe');
+      if (iframe) iframe.src = '';
+      document.getElementById('song-player-view').classList.add('hidden');
+      document.getElementById('songs-catalog-view').classList.remove('hidden');
+    }
+
+    function renderLyricsList() {
+      const container = document.getElementById('lyrics-list-container');
+      if (!container || !currentSong) return;
+      container.innerHTML = '';
+
+      currentSong.lyrics.forEach((lyric, idx) => {
+        const item = document.createElement('div');
+        item.className = 'lyric-item';
+        item.id = `lyric-item-${idx}`;
+        item.onclick = () => playSpecificLyric(idx);
+
+        item.innerHTML = `
+          <div style="flex: 1;">
+            <div class="lyric-en">${lyric.en}</div>
+            <div class="lyric-vi">${lyric.vi}</div>
+          </div>
+          <button class="speak-btn" style="padding: 7px 12px; font-size: 0.85rem;" onclick="event.stopPropagation(); playSpecificLyric(${idx})" title="Nghe cô giáo phát âm câu này">
+            🔊 Luyện phát âm
+          </button>
+        `;
+        container.appendChild(item);
+      });
+
+      document.getElementById('player-progress-indicator').innerText = `${currentSong.lyrics.length} câu`;
+    }
+
+    function playSpecificLyric(idx) {
+      if (!currentSong || !currentSong.lyrics[idx]) return;
+      highlightLyricLine(idx);
+      if (isTeacherSinging) {
+        speakText(currentSong.lyrics[idx].en);
+      }
+    }
+
+    function highlightLyricLine(idx) {
+      document.querySelectorAll('.lyric-item').forEach(el => el.classList.remove('active'));
+      const activeEl = document.getElementById(`lyric-item-${idx}`);
+      if (activeEl) {
+        activeEl.classList.add('active');
+        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const ind = document.getElementById('player-progress-indicator');
+        if (ind) ind.innerText = `Đang chọn câu ${idx + 1} / ${currentSong.lyrics.length}`;
+      }
+    }
+
+    function toggleTeacherVoice() {
+      isTeacherSinging = !isTeacherSinging;
+      const btn = document.getElementById('btn-toggle-teacher');
+      const text = document.getElementById('teacher-status-text');
+      if (btn) btn.classList.toggle('active', isTeacherSinging);
+      if (text) text.innerText = isTeacherSinging ? 'Bật' : 'Tắt';
+    }
+
+    let isPlayingMelody = false;
+    function toggleMelodyPlayback() {
+      if (isPlayingMelody) {
+        stopMelody();
+      } else {
+        startMelody();
+      }
+    }
+
+    function stopMelody() {
+      isPlayingMelody = false;
+      clearAllSongTimers();
+      const btn = document.getElementById('btn-play-melody');
+      const text = document.getElementById('melody-status-text');
+      if (btn) btn.classList.remove('active');
+      if (text) text.innerText = 'Tắt';
+    }
+
+    function startMelody() {
+      if (!currentSong || !currentSong.notes) return;
+      isPlayingMelody = true;
+      const btn = document.getElementById('btn-play-melody');
+      const text = document.getElementById('melody-status-text');
+      if (btn) btn.classList.add('active');
+      if (text) text.innerText = 'Đang phát 🎵';
+
+      let currentNoteTime = 0;
+      currentSong.notes.forEach(note => {
+        const timer = setTimeout(() => {
+          if (!isPlayingMelody) return;
+          playSynthBellNote(note.f, note.d);
+        }, currentNoteTime * 1000);
+        songNoteTimeouts.push(timer);
+        currentNoteTime += note.d;
+      });
+
+      const finishTimer = setTimeout(() => {
+        stopMelody();
+      }, currentNoteTime * 1000 + 500);
+      songNoteTimeouts.push(finishTimer);
+    }
+
+    function stopSong() {
+      isPlayingSong = false;
+      stopMelody();
+      const iframe = document.getElementById('song-video-iframe');
+      if (iframe && iframe.src) iframe.src = '';
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function pauseSong() {
+      isPlayingSong = false;
+      document.getElementById('player-play-icon').innerText = '▶️';
+      document.getElementById('btn-song-toggle').classList.remove('playing');
+      clearAllSongTimers();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function replaySong() {
+      stopSong();
+      setTimeout(startSongPlayback, 250);
+    }
+
+    function clearAllSongTimers() {
+      songNoteTimeouts.forEach(t => clearTimeout(t));
+      songNoteTimeouts = [];
+      songLyricTimeouts.forEach(t => clearTimeout(t));
+      songLyricTimeouts = [];
+      activeOscillators.forEach(osc => {
+        try { osc.stop(); } catch(e){}
+      });
+      activeOscillators = [];
+    }
+
+    function startSongPlayback() {
+      if (!currentSong) return;
+      stopSong();
+      isPlayingSong = true;
+
+      document.getElementById('player-play-icon').innerText = '⏸️';
+      document.getElementById('btn-song-toggle').classList.add('playing');
+
+      const notes = currentSong.notes || [];
+      const lyrics = currentSong.lyrics || [];
+
+      // Calculate total melody duration
+      let totalMelodyDuration = 0;
+      notes.forEach(n => { totalMelodyDuration += n.d; });
+      if (totalMelodyDuration <= 0) totalMelodyDuration = 12;
+
+      // Schedule Musical Melody Notes (Warm synth marimba bell)
+      let currentNoteTime = 0;
+      notes.forEach(note => {
+        const timer = setTimeout(() => {
+          if (!isPlayingSong) return;
+          playSynthBellNote(note.f, note.d);
+        }, currentNoteTime * 1000);
+        songNoteTimeouts.push(timer);
+        currentNoteTime += note.d;
+      });
+
+      // Synchronize Lyric Lines highlighting & Teacher voice
+      const timePerLyric = totalMelodyDuration / lyrics.length;
+      lyrics.forEach((lyric, idx) => {
+        const timer = setTimeout(() => {
+          if (!isPlayingSong) return;
+          highlightLyricLine(idx);
+
+          // If teacher voice is enabled, recite lyric in sync
+          if (isTeacherSinging) {
+            speakText(lyric.en);
+          }
+        }, idx * timePerLyric * 1000);
+        songLyricTimeouts.push(timer);
+      });
+
+      // Completion timer
+      const finishTimer = setTimeout(() => {
+        if (!isPlayingSong) return;
+        confetti({
+          particleCount: 70,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        playSuccessSound();
+        if (isTeacherSinging) {
+          speakText("Wonderful singing!");
+        }
+        stopSong();
+      }, totalMelodyDuration * 1000 + 1500);
+      songNoteTimeouts.push(finishTimer);
+    }
+
+    function playSynthBellNote(freq, duration) {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        // Gentle pluck envelope (marimba/celesta feel)
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.22, now + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.95);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + duration);
+        activeOscillators.push(osc);
+      } catch (e) {
+        console.warn('Melody note error:', e);
+      }
+    }
 
     /* GAMIFICATION: STARS & PROGRESS PERSISTENCE */
     function loadSavedStars() {
