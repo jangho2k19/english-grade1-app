@@ -163,7 +163,7 @@ const COURSE_DATA = [
     "vocab": [
       {
         "word": "chicken",
-        "translation": "thịt gà",
+        "translation": "thịt gà / gà rán",
         "icon": "🍗"
       },
       {

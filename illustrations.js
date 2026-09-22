@@ -294,59 +294,89 @@ const VOCAB_ILLUSTRATIONS = {
 
   // UNIT 5: Ii
   "chicken": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Tail & body -->
-    <path d="M22 48 C16 38 28 32 36 38 C44 42 54 44 60 48 C68 54 70 66 66 74 C58 82 36 82 28 72 Z" fill="#F59E0B"/>
-    <!-- Head -->
-    <circle cx="68" cy="36" r="14" fill="#F59E0B"/>
-    <!-- Comb -->
-    <path d="M64 24 C64 18 70 18 70 24 C72 18 78 20 76 26 Z" fill="#EF4444"/>
-    <circle cx="71" cy="34" r="3" fill="#1F2937"/>
-    <!-- Beak & wattle -->
-    <polygon points="78,36 88,40 78,42" fill="#EA580C"/>
-    <ellipse cx="78" cy="44" rx="2.5" ry="4" fill="#EF4444"/>
-    <!-- Legs -->
-    <line x1="42" y1="80" x2="42" y2="92" stroke="#EA580C" stroke-width="3"/>
-    <line x1="52" y1="80" x2="52" y2="92" stroke="#EA580C" stroke-width="3"/>
+    <!-- Floor shadow -->
+    <ellipse cx="52" cy="90" rx="36" ry="6" fill="#E2E8F0" />
+    <!-- Delicious crispy roast chicken drumstick (thịt gà / gà rán chuẩn Fish & Chips) -->
+    <!-- Bone knobs -->
+    <ellipse cx="20" cy="68" rx="6" ry="7" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3.5" />
+    <ellipse cx="22" cy="80" rx="6" ry="7" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3.5" />
+    <!-- Bone shaft -->
+    <path d="M24 70 L42 56 L48 64 L26 78 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Plump crispy golden chicken meat -->
+    <path d="M38 64 C30 50 36 30 54 22 C72 16 88 28 92 46 C96 64 78 78 58 76 C46 74 40 70 38 64 Z" fill="#F59E0B" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Golden brown crispy glaze overlay -->
+    <path d="M48 68 C38 60 42 42 56 30 C70 20 84 28 88 42 C82 58 66 68 48 68 Z" fill="#D97706" opacity="0.45" />
+    <!-- Bright crispy highlights -->
+    <path d="M46 48 C42 36 48 28 60 24 C70 20 80 26 84 34" fill="none" stroke="#FEF08A" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="72" cy="38" r="3" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="80" cy="48" r="2" fill="#FFFFFF" opacity="0.8"/>
+    <!-- Crispy seasoning crumbs -->
+    <circle cx="56" cy="46" r="2" fill="#92400E"/>
+    <circle cx="68" cy="56" r="2.2" fill="#92400E"/>
+    <circle cx="78" cy="58" r="1.8" fill="#92400E"/>
+    <circle cx="52" cy="62" r="1.8" fill="#92400E"/>
+    <!-- Hot delicious steam swirls -->
+    <path d="M60 16 Q65 10 60 4" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+    <path d="M74 18 Q79 12 74 6" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
   </svg>`,
 
   "chips": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Chip pack box -->
-    <path d="M28 44 L32 86 L68 86 L72 44 Z" fill="#EF4444"/>
-    <path d="M28 44 Q50 50 72 44" fill="none" stroke="#DC2626" stroke-width="4"/>
-    <text x="50" y="72" font-family="'Fredoka', sans-serif" font-weight="700" font-size="16" fill="#FDE047" text-anchor="middle">🍟</text>
-    <!-- French fries -->
-    <rect x="36" y="16" width="6" height="34" rx="2" fill="#FBBF24" transform="rotate(-12 36 16)"/>
-    <rect x="44" y="12" width="6" height="38" rx="2" fill="#FDE047"/>
-    <rect x="52" y="14" width="6" height="36" rx="2" fill="#FBBF24" transform="rotate(8 52 14)"/>
-    <rect x="60" y="20" width="6" height="30" rx="2" fill="#FDE047" transform="rotate(18 60 20)"/>
+    <!-- Floor shadow -->
+    <ellipse cx="50" cy="90" rx="34" ry="5" fill="#E2E8F0" />
+    <!-- French fries box -->
+    <!-- French fries sticks behind/inside -->
+    <rect x="36" y="16" width="7" height="34" rx="3" fill="#FBBF24" stroke="#2B2D42" stroke-width="3" transform="rotate(-14 36 16)"/>
+    <rect x="44" y="10" width="7" height="40" rx="3" fill="#FDE047" stroke="#2B2D42" stroke-width="3"/>
+    <rect x="53" y="14" width="7" height="36" rx="3" fill="#FBBF24" stroke="#2B2D42" stroke-width="3" transform="rotate(8 53 14)"/>
+    <rect x="62" y="20" width="7" height="30" rx="3" fill="#FDE047" stroke="#2B2D42" stroke-width="3" transform="rotate(18 62 20)"/>
+    <!-- Fry Box Front -->
+    <path d="M26 44 L32 86 L68 86 L74 44 Z" fill="#EF4444" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M26 44 Q50 56 74 44" fill="#DC2626" stroke="#2B2D42" stroke-width="2.5"/>
+    <!-- Star on Box -->
+    <polygon points="50,56 53,63 60,63 55,67 57,74 50,70 43,74 45,67 40,63 47,63" fill="#FFE66D" stroke="#2B2D42" stroke-width="1.8"/>
   </svg>`,
 
   "fish": `<svg viewBox="0 0 100 100" class="vocab-svg">
+    <!-- Floor shadow -->
+    <ellipse cx="50" cy="88" rx="36" ry="6" fill="#E2E8F0" />
     <!-- Tail fin -->
-    <polygon points="20,32 34,50 20,68 28,50" fill="#38BDF8"/>
+    <polygon points="18,30 36,50 18,70 28,50" fill="#38BDF8" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Dorsal fin -->
+    <path d="M46 28 Q58 18 68 30 Z" fill="#38BDF8" stroke="#2B2D42" stroke-width="3" stroke-linejoin="round"/>
     <!-- Fish body -->
-    <ellipse cx="54" cy="50" rx="28" ry="20" fill="#0284C7"/>
-    <!-- Stripes -->
-    <path d="M48 32 Q54 50 48 68" fill="none" stroke="#FDE047" stroke-width="4" stroke-linecap="round"/>
-    <path d="M58 32 Q64 50 58 68" fill="none" stroke="#FDE047" stroke-width="4" stroke-linecap="round"/>
-    <!-- Eye -->
-    <circle cx="72" cy="46" r="4.5" fill="#FFFFFF"/>
-    <circle cx="73" cy="46" r="2.5" fill="#0F172A"/>
-    <!-- Bubbles -->
-    <circle cx="86" cy="38" r="3" fill="#BAE6FD" opacity="0.8"/>
-    <circle cx="92" cy="30" r="2" fill="#BAE6FD" opacity="0.8"/>
+    <ellipse cx="56" cy="50" rx="30" ry="22" fill="#0284C7" stroke="#2B2D42" stroke-width="3.5"/>
+    <!-- Golden belly/stripes -->
+    <path d="M50 30 Q56 50 50 70" fill="none" stroke="#FDE047" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M62 30 Q68 50 62 70" fill="none" stroke="#FDE047" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Happy smiling Eye -->
+    <circle cx="74" cy="46" r="6" fill="#FFFFFF" stroke="#2B2D42" stroke-width="2"/>
+    <circle cx="75" cy="46" r="3.5" fill="#0F172A"/>
+    <circle cx="77" cy="44" r="1.5" fill="#FFFFFF"/>
+    <!-- Cute smile & rosy cheek -->
+    <path d="M78 54 Q82 56 86 52" fill="none" stroke="#2B2D42" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="70" cy="56" r="3.5" fill="#FF8A80" opacity="0.6"/>
+    <!-- Water bubbles -->
+    <circle cx="88" cy="36" r="3.5" fill="#BAE6FD" stroke="#2B2D42" stroke-width="1.5"/>
+    <circle cx="94" cy="26" r="2.5" fill="#BAE6FD" stroke="#2B2D42" stroke-width="1.5"/>
   </svg>`,
 
   "milk": `<svg viewBox="0 0 100 100" class="vocab-svg">
-    <!-- Milk carton -->
-    <polygon points="34,16 66,16 60,26 30,26" fill="#93C5FD"/>
-    <rect x="30" y="26" width="40" height="58" rx="3" fill="#DBEAFE"/>
-    <path d="M30 46 L70 46 L70 70 L30 70 Z" fill="#3B82F6"/>
-    <text x="50" y="62" font-family="'Fredoka', sans-serif" font-weight="700" font-size="12" fill="#FFFFFF" text-anchor="middle">MILK</text>
-    <!-- Cow spot -->
-    <path d="M36 32 C38 28 44 30 44 34 C44 38 40 40 36 38 Z" fill="#1E3A8A"/>
+    <!-- Floor shadow -->
+    <ellipse cx="50" cy="90" rx="32" ry="5" fill="#E2E8F0" />
     <!-- Straw -->
-    <line x1="56" y1="6" x2="62" y2="24" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+    <line x1="56" y1="8" x2="62" y2="28" stroke="#EF4444" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Milk carton gable top -->
+    <polygon points="32,24 68,24 62,34 26,34" fill="#93C5FD" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Milk carton body -->
+    <rect x="26" y="34" width="48" height="52" rx="4" fill="#DBEAFE" stroke="#2B2D42" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Blue band -->
+    <rect x="26" y="52" width="48" height="22" fill="#3B82F6"/>
+    <line x1="26" y1="52" x2="74" y2="52" stroke="#2B2D42" stroke-width="3"/>
+    <line x1="26" y1="74" x2="74" y2="74" stroke="#2B2D42" stroke-width="3"/>
+    <!-- Bold text MILK -->
+    <text x="50" y="68" font-family="'Fredoka', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">MILK</text>
+    <!-- Cute Cow spot -->
+    <path d="M34 40 C36 36 42 38 42 42 C42 46 38 48 34 46 Z" fill="#1E3A8A"/>
   </svg>`,
 
   // UNIT 6: Ee

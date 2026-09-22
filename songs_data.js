@@ -8,6 +8,7 @@ const SONGS_DATA = [
     icon: "🔤",
     color: "#FF6B6B",
     theme: "Chữ cái & Phonics (A-Z)",
+    units: [1, 3, 5, 6],
     audioSrc: "./audio/abc-song.ogg",
     description: "Bài hát ca nhạc thiếu nhi thực tế kinh điển, bé vừa nghe hát vừa thuộc làu 26 chữ cái tiếng Anh từ A đến Z.",
     lyrics: [
@@ -25,7 +26,8 @@ const SONGS_DATA = [
     titleVi: "Ngôi sao nhỏ lấp lánh",
     icon: "⭐",
     color: "#FBBF24",
-    theme: "Thiên nhiên & Bầu trời (Unit 11)",
+    theme: "Thiên nhiên & Bầu trời",
+    units: [11],
     audioSrc: "./audio/twinkle-star.ogg",
     description: "Giai điệu ca nhạc êm dịu ngọt ngào có giọng hát trong trẻo giúp bé thư giãn, hòa giọng và luyện phát âm từ vựng ngôi sao, bầu trời.",
     lyrics: [
@@ -45,7 +47,8 @@ const SONGS_DATA = [
     titleVi: "Bánh xe buýt quay tròn tròn",
     icon: "🚌",
     color: "#3B82F6",
-    theme: "Phương tiện giao thông (Unit 11)",
+    theme: "Phương tiện giao thông",
+    units: [2, 11],
     audioSrc: "./audio/wheels-on-bus.ogg",
     description: "Bài ca vui nhộn về chuyến xe buýt chở học sinh đến trường với tiếng còi kêu và bánh xe lăn tròn vui nhộn.",
     lyrics: [
@@ -64,7 +67,8 @@ const SONGS_DATA = [
     titleVi: "Trang trại của bác MacDonald",
     icon: "🚜",
     color: "#10B981",
-    theme: "Động vật nuôi (Unit 2, Unit 4 & Unit 7)",
+    theme: "Động vật nuôi",
+    units: [2, 4, 7],
     audioSrc: "./audio/old-macdonald.mp3",
     description: "Khám phá trang trại rộn ràng tiếng hát cùng các loài động vật dễ thương (vịt duck, mèo cat, chó dog...).",
     lyrics: [
@@ -81,7 +85,8 @@ const SONGS_DATA = [
     titleVi: "Chèo thuyền xuôi dòng sông",
     icon: "🚣",
     color: "#06B6D4",
-    theme: "Hoạt động & Trò chơi (Unit 12)",
+    theme: "Hoạt động & Trò chơi",
+    units: [12],
     audioSrc: "./audio/row-boat.ogg",
     description: "Bài hát đồng dao ngắn có nhịp điệu chèo thuyền nhịp nhàng, câu từ đơn giản giúp các bé học sinh lớp 1 dễ dàng thuộc.",
     lyrics: [
@@ -97,7 +102,8 @@ const SONGS_DATA = [
     titleVi: "Chào buổi sáng cô giáo & bạn bè",
     icon: "☀️",
     color: "#F59E0B",
-    theme: "Chào hỏi lớp học (Unit 1 & Unit 3)",
+    theme: "Chào hỏi lớp học",
+    units: [1, 3],
     audioSrc: "./audio/good-morning.ogg",
     description: "Bài ca chào buổi sáng thân thương quen thuộc nhất, giúp các em tự tin cất lời chào thầy cô và bạn bè mỗi sớm mai đến trường.",
     lyrics: [

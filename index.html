@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Fallback dữ liệu và thư viện hình minh họa SVG -->
   <script src="./course_data.js"></script>
@@ -330,8 +330,10 @@
       display: inline-block;
       background: linear-gradient(135deg, #4ECDC4, #2CB1A6);
       color: white;
-      font-family: 'Fredoka', cursive;
-      font-size: 1.4rem;
+      font-family: 'Comic Neue', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       padding: 4px 14px;
       border-radius: 12px;
       margin-bottom: 0.6rem;
@@ -354,32 +356,58 @@
       margin-bottom: 1rem;
     }
 
-    /* MINI ART PREVIEWS IN CARDS */
+    /* MINI ART PREVIEWS IN CARDS WITH VOCAB LABELS */
     .unit-art-preview {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      gap: 6px;
       margin-top: auto;
       background: #F8FAFC;
-      padding: 8px;
+      padding: 6px;
       border-radius: 14px;
       border: 1px solid #E2E8F0;
     }
 
     .unit-art-preview-item {
-      aspect-ratio: 1;
       border-radius: 10px;
       background: white;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 4px;
+      padding: 5px 3px 4px 3px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      min-height: 56px;
+    }
+
+    .unit-art-preview-item svg {
+      width: 100%;
+      height: 32px;
+      display: block;
+    }
+
+    .preview-word-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 3px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      line-height: 1.1;
     }
 
     .unit-card:hover .unit-art-preview-item {
-      transform: scale(1.05);
+      transform: scale(1.03);
+    }
+
+    .unit-art-preview-item:hover {
+      box-shadow: 0 4px 10px rgba(255, 94, 98, 0.2);
+      transform: scale(1.1) !important;
     }
 
     /* VIEW 2: UNIT DETAIL */
@@ -464,13 +492,44 @@
     .unit-phonics-badge {
       background: white;
       color: var(--purple);
-      font-family: 'Fredoka', cursive;
+      font-family: 'Comic Neue', Georgia, serif;
       font-size: 2.2rem;
+      letter-spacing: 1.5px;
       padding: 0.6rem 2rem;
       border-radius: 22px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       text-align: center;
       font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .unit-phonics-badge:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.25);
+    }
+
+    .btn-phonics-mini-speak {
+      margin-top: 6px;
+      background: #F3E8FF;
+      color: var(--purple);
+      border: 1px solid #D8B4FE;
+      font-size: 0.82rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-phonics-mini-speak:hover {
+      background: var(--purple);
+      color: white;
     }
 
     .section-block {
@@ -656,13 +715,316 @@
       background: #FFFBEB;
       border: 2.5px dashed #F59E0B;
       border-radius: 20px;
-      padding: 1.8rem;
-      white-space: pre-line;
+      padding: 1.4rem 1.6rem;
       font-size: 1.25rem;
       line-height: 1.9;
       font-weight: 600;
       color: #92400E;
       letter-spacing: 0.3px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* INTERACTIVE CHANT LINE-BY-LINE */
+    .chant-line-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: white;
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1.5px solid #FDE68A;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chant-line-item:hover {
+      background: #FEF9C3;
+      border-color: #F59E0B;
+      transform: translateX(4px);
+    }
+
+    .chant-line-item.chant-active {
+      background: #FEF08A !important;
+      border-color: #D97706 !important;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+      transform: scale(1.02);
+    }
+
+    .chant-line-idx {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #B45309;
+      background: #FEF3C7;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chant-line-text {
+      flex-grow: 1;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.15rem;
+      color: #78350F;
+    }
+
+    .chant-line-play-btn {
+      background: #F59E0B;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .chant-line-play-btn:hover {
+      background: #D97706;
+      transform: scale(1.1);
+    }
+
+    /* VOCABULARY TOOLBAR & QUIZ / HIDE TEXT MODE */
+    .vocab-section-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.3rem;
+    }
+
+    .btn-quiz-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F1F5F9;
+      border: 2px solid #CBD5E1;
+      color: #334155;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-quiz-toggle:hover {
+      background: #E2E8F0;
+      border-color: #94A3B8;
+      transform: translateY(-2px);
+    }
+
+    .btn-quiz-toggle.active {
+      background: #FEF3C7;
+      border-color: #F59E0B;
+      color: #92400E;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
+
+    .vocab-card.quiz-hidden .vocab-word-text,
+    .vocab-card.quiz-hidden .vocab-vi {
+      display: none;
+    }
+
+    .vocab-card.quiz-hidden .vocab-quiz-badge {
+      display: inline-block;
+      background: #FEF3C7;
+      color: #B45309;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 2px dashed #F59E0B;
+      margin: 4px 0;
+      animation: quiz-pulse 1.8s infinite ease-in-out;
+    }
+
+    .vocab-quiz-badge {
+      display: none;
+    }
+
+    @keyframes quiz-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .vocab-card.quiz-revealed .vocab-quiz-badge {
+      display: none !important;
+    }
+
+    .vocab-card.quiz-revealed .vocab-word-text {
+      display: block !important;
+      animation: pop-reveal 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .vocab-card.quiz-revealed .vocab-vi {
+      display: block !important;
+      animation: pop-reveal 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes pop-reveal {
+      0% { opacity: 0; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* RELATED SONGS IN UNIT DETAIL */
+    .related-songs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .related-song-card {
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 18px;
+      padding: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .related-song-card:hover {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+      border-color: var(--primary);
+    }
+
+    .related-song-icon {
+      font-size: 2.2rem;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .related-song-info {
+      flex-grow: 1;
+    }
+
+    .related-song-info h4 {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .related-song-info p {
+      font-size: 0.88rem;
+      color: var(--light-text);
+      font-weight: 600;
+    }
+
+    .related-song-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #059669;
+      background: #D1FAE5;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-top: 4px;
+    }
+
+    .btn-play-related-song {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+
+    .btn-play-related-song:hover {
+      transform: scale(1.05);
+    }
+
+    /* FLASHCARD UNIT FILTER TABS */
+    .fc-unit-tabs-wrap {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 1.2rem;
+      scrollbar-width: thin;
+    }
+
+    .fc-unit-tabs-wrap::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .fc-unit-tabs-wrap::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 10px;
+    }
+
+    .fc-unit-tab-pill {
+      background: #F1F5F9;
+      border: 1.5px solid #CBD5E1;
+      color: #475569;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .fc-unit-tab-pill:hover {
+      background: #E2E8F0;
+      border-color: #94A3B8;
+      color: #1E293B;
+    }
+
+    .fc-unit-tab-pill.active {
+      background: var(--purple-gradient);
+      border-color: var(--purple);
+      color: white;
+      box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+    }
+
+    /* SONGS CATALOG UNIT BADGES */
+    .song-units-list {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .song-unit-pill {
+      background: #EFF6FF;
+      color: #2563EB;
+      border: 1px solid #BFDBFE;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 1px 8px;
+      border-radius: 10px;
     }
 
     /* VIEW 3: QUIZ GAME */
@@ -1747,8 +2109,13 @@
 
       <!-- VOCABULARY -->
       <section class="section-block">
-        <div class="block-title">
-          <span>🎨</span> Từ vựng & Phát âm (Nhấp vào thẻ để nghe giọng đọc)
+        <div class="vocab-section-toolbar">
+          <div class="block-title" style="margin-bottom: 0;">
+            <span>🎨</span> Từ vựng & Phát âm (Nhấp thẻ để nghe phát âm)
+          </div>
+          <button class="btn-quiz-toggle" id="btn-toggle-vocab-text" onclick="toggleVocabQuizMode()">
+            <span id="quiz-toggle-icon">🙈</span> <span id="quiz-toggle-text">Đố bé (Ẩn chữ)</span>
+          </button>
         </div>
         <div class="vocab-grid" id="detail-vocab-grid">
           <!-- Dynamically populated with rich SVGs -->
@@ -1768,14 +2135,24 @@
       <!-- CHANT -->
       <section class="section-block">
         <div class="block-title">
-          <span>🎵</span> Bài vè vui nhộn (Listen and chant)
+          <span>🎵</span> Bài vè vui nhộn (Listen and chant - Nhấp vào từng dòng để nghe ngắt nhịp)
         </div>
         <div class="chant-box" id="detail-chant">
-          <!-- Dynamically populated -->
+          <!-- Dynamically populated with interactive lines -->
         </div>
         <button style="margin-top: 16px;" class="speak-btn" id="chant-speech-btn" onclick="speakChant()">
-          🔊 Đọc to bài vè cùng cô giáo
+          🔊 Đọc to cả bài vè cùng cô giáo
         </button>
+      </section>
+
+      <!-- RELATED SONGS -->
+      <section class="section-block" id="detail-related-songs-section">
+        <div class="block-title">
+          <span>🎶</span> Bài hát & Giai điệu ca nhạc liên quan đến Unit này
+        </div>
+        <div class="related-songs-grid" id="detail-related-songs-grid">
+          <!-- Dynamically populated from SONGS_DATA based on current unit -->
+        </div>
       </section>
     </div>
 
@@ -1848,6 +2225,11 @@
             <div style="font-family: 'Fredoka'; font-weight: 700; color: var(--light-text);" id="fc-counter">
               Thẻ 1 / 64
             </div>
+          </div>
+
+          <!-- Quick unit filter pills -->
+          <div class="fc-unit-tabs-wrap" id="fc-unit-tabs-wrap">
+            <!-- Dynamically populated unit pills -->
           </div>
 
           <p style="color: var(--light-text); font-weight: 600; margin-bottom: 1.2rem;">
@@ -2281,7 +2663,7 @@
       }
     }
 
-    function speakText(text, onComplete) {
+    function speakText(text, onComplete, customRate, customPitch) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel(); // Stop any pending speech
 
@@ -2290,8 +2672,8 @@
           utterance.voice = femaleVoice;
         }
         utterance.lang = femaleVoice ? femaleVoice.lang : 'en-US';
-        utterance.pitch = voicePitch;
-        utterance.rate = voiceRate;
+        utterance.pitch = customPitch !== undefined ? customPitch : voicePitch;
+        utterance.rate = customRate !== undefined ? customRate : voiceRate;
 
         // Prevent Chromium garbage collection
         window.activeUtterance = utterance;
@@ -2349,10 +2731,11 @@
           starIcons += (i < stars) ? '⭐' : '☆';
         }
 
-        // Generate 4 mini vector illustrations for preview
+        // Generate 4 mini vector illustrations for preview WITH English word label
         const artPreviews = u.vocab.map(v => `
           <div class="unit-art-preview-item" title="Bấm để nghe: ${v.word} (${v.translation})" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this)">
             ${getVocabIllustration(v.word)}
+            <span class="preview-word-label">${v.word}</span>
           </div>
         `).join('');
 
@@ -2410,7 +2793,10 @@
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       if (viewId === 'units-view') document.getElementById('tab-units').classList.add('active');
       if (viewId === 'game-view') document.getElementById('tab-game').classList.add('active');
-      if (viewId === 'flashcard-view') document.getElementById('tab-cards').classList.add('active');
+      if (viewId === 'flashcard-view') {
+        document.getElementById('tab-cards').classList.add('active');
+        renderFCUnitTabs();
+      }
       if (viewId === 'songs-view') {
         const tabS = document.getElementById('tab-songs');
         if (tabS) tabS.classList.add('active');
@@ -2419,13 +2805,85 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    /* VOCABULARY QUIZ MODE (ẨN/HIỆN CHỮ) */
+    let isVocabQuizMode = false;
+    function toggleVocabQuizMode() {
+      isVocabQuizMode = !isVocabQuizMode;
+      const btn = document.getElementById('btn-toggle-vocab-text');
+      const icon = document.getElementById('quiz-toggle-icon');
+      const text = document.getElementById('quiz-toggle-text');
+      if (!btn) return;
+
+      if (isVocabQuizMode) {
+        btn.classList.add('active');
+        if (icon) icon.innerText = '👁️';
+        if (text) text.innerText = 'Bấm để Hiện chữ';
+        document.querySelectorAll('#detail-vocab-grid .vocab-card').forEach(c => {
+          c.classList.remove('quiz-revealed');
+          c.classList.add('quiz-hidden');
+        });
+      } else {
+        btn.classList.remove('active');
+        if (icon) icon.innerText = '🙈';
+        if (text) text.innerText = 'Đố bé (Ẩn chữ)';
+        document.querySelectorAll('#detail-vocab-grid .vocab-card').forEach(c => {
+          c.classList.remove('quiz-hidden');
+          c.classList.remove('quiz-revealed');
+        });
+      }
+    }
+
+    function handleVocabCardClick(v, item) {
+      if (item.classList.contains('quiz-hidden')) {
+        item.classList.remove('quiz-hidden');
+        item.classList.add('quiz-revealed');
+        playSuccessSound();
+        confetti({
+          particleCount: 25,
+          spread: 45,
+          origin: { y: 0.7 }
+        });
+      }
+      triggerVocabPronounce(v.word, item);
+    }
+
+    function speakPhonicsFocus(phonics, letter) {
+      if (!currentUnit) return;
+      const cleanPhonics = (phonics || currentUnit.phonics).replace(/\//g, '');
+      const exampleWords = currentUnit.vocab.map(v => v.word).join(', ');
+      const speech = `Letter ${letter || currentUnit.letter.charAt(0)}. Sound ${cleanPhonics}... ${cleanPhonics}... as in ${exampleWords}`;
+      speakText(speech, null, 0.78);
+    }
+
+    function playSongFromUnitDetail(songId) {
+      showSongsView();
+      openSongPlayer(songId);
+      setTimeout(() => {
+        if (typeof playSong === 'function') playSong();
+      }, 350);
+    }
+
     function openUnitDetail(unitNum) {
       currentUnit = courseData.find(u => u.unit === unitNum);
       if (!currentUnit) return;
 
+      // Reset quiz mode on entering a unit
+      isVocabQuizMode = false;
+      const btnQuiz = document.getElementById('btn-toggle-vocab-text');
+      const iconQuiz = document.getElementById('quiz-toggle-icon');
+      const textQuiz = document.getElementById('quiz-toggle-text');
+      if (btnQuiz) {
+        btnQuiz.classList.remove('active');
+        if (iconQuiz) iconQuiz.innerText = '🙈';
+        if (textQuiz) textQuiz.innerText = 'Đố bé (Ẩn chữ)';
+      }
+
       document.getElementById('detail-title').innerText = `Unit ${currentUnit.unit}: ${currentUnit.title}`;
       document.getElementById('detail-subtitle').innerText = `Chủ đề & Âm tiết: ${currentUnit.letter} ${currentUnit.phonics}`;
-      document.getElementById('detail-letter').innerText = `${currentUnit.letter} ${currentUnit.phonics}`;
+      document.getElementById('detail-letter').innerHTML = `
+        <span class="phonics-badge-text">${currentUnit.letter} ${currentUnit.phonics}</span>
+        <button class="btn-phonics-mini-speak" onclick="event.stopPropagation(); speakPhonicsFocus('${currentUnit.phonics}', '${currentUnit.letter}')" title="Nghe cô giáo phát âm chuẩn âm này">🔊 Luyện âm</button>
+      `;
 
       // Update completion star button state
       const currentStars = earnedStars[currentUnit.unit] || 0;
@@ -2434,25 +2892,28 @@
         btnComp.innerHTML = currentStars > 0 ? `⭐ Đã đạt ${currentStars}/4 Sao! (+1 Sao)` : `⭐ Hoàn thành Unit (+1 Sao)`;
       }
 
-      // Populate Vocab Grid with Rich SVG Visuals
+      // Populate Vocab Grid with Rich SVG Visuals & Quiz Mode support
       const vocabGrid = document.getElementById('detail-vocab-grid');
       vocabGrid.innerHTML = '';
       currentUnit.vocab.forEach(v => {
         const item = document.createElement('div');
         item.className = 'vocab-card';
-        item.onclick = () => triggerVocabPronounce(v.word, item);
+        item.onclick = () => handleVocabCardClick(v, item);
         item.innerHTML = `
-          <div class="vocab-illustration-box" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this.closest('.vocab-card'))">
+          <div class="vocab-illustration-box">
             ${getVocabIllustration(v.word)}
           </div>
-          <div class="vocab-word" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this.closest('.vocab-card'))">${v.word}</div>
+          <div class="vocab-word">
+            <span class="vocab-word-text">${v.word}</span>
+            <span class="vocab-quiz-badge">❓ Đố bé từ gì?</span>
+          </div>
           <div class="vocab-vi">${v.translation}</div>
           <div class="audio-btn-pill"><span>🔊</span> Chạm để nghe</div>
         `;
         vocabGrid.appendChild(item);
       });
 
-      // Populate Sentences
+      // Populate Sentences with clear pronunciation
       const sentenceList = document.getElementById('detail-sentence-list');
       sentenceList.innerHTML = '';
       currentUnit.sentences.forEach(s => {
@@ -2463,13 +2924,51 @@
             <div class="sentence-en">${s.en}</div>
             <div class="sentence-vi">${s.vi}</div>
           </div>
-          <button class="speak-btn" onclick="speakText('${s.en.replace(/'/g, "\\'")}')">🔊 Nghe</button>
+          <button class="speak-btn" onclick="speakText('${s.en.replace(/'/g, "\\'")}', null, 0.80)">🔊 Nghe câu</button>
         `;
         sentenceList.appendChild(sCard);
       });
 
-      // Populate Chant
-      document.getElementById('detail-chant').innerText = currentUnit.chant;
+      // Populate Chant with interactive line-by-line reading
+      const chantContainer = document.getElementById('detail-chant');
+      chantContainer.innerHTML = '';
+      const chantLines = currentUnit.chant.split('\n').filter(l => l.trim().length > 0);
+      chantLines.forEach((line, idx) => {
+        const lineEl = document.createElement('div');
+        lineEl.className = 'chant-line-item';
+        lineEl.title = 'Bấm để nghe nhịp câu này';
+        lineEl.onclick = () => {
+          speakText(line, null, 0.80);
+          lineEl.classList.add('chant-active');
+          setTimeout(() => lineEl.classList.remove('chant-active'), 1500);
+        };
+        lineEl.innerHTML = `
+          <span class="chant-line-idx">${idx + 1}</span>
+          <span class="chant-line-text">${line}</span>
+          <button class="chant-line-play-btn" onclick="event.stopPropagation(); speakText('${line.replace(/'/g, "\\'")}', null, 0.80)">🔊</button>
+        `;
+        chantContainer.appendChild(lineEl);
+      });
+
+      // Populate Related Songs
+      const relatedSection = document.getElementById('detail-related-songs-section');
+      const relatedGrid = document.getElementById('detail-related-songs-grid');
+      if (relatedSection && relatedGrid && typeof SONGS_DATA !== 'undefined') {
+        const matches = SONGS_DATA.filter(s => s.units && s.units.includes(currentUnit.unit));
+        const songsToShow = matches.length > 0 ? matches : [SONGS_DATA[0]];
+        relatedSection.style.display = 'block';
+        relatedGrid.innerHTML = songsToShow.map(s => `
+          <div class="related-song-card" style="border-left: 5px solid ${s.color};" onclick="playSongFromUnitDetail('${s.id}')">
+            <div class="related-song-icon" style="background: ${s.color}22;">${s.icon}</div>
+            <div class="related-song-info">
+              <h4>${s.title}</h4>
+              <p>${s.titleVi} • ${s.theme}</p>
+              <span class="related-song-badge">✨ Ca khúc thật có giọng hát</span>
+            </div>
+            <button class="btn-play-related-song">▶ Hát ca khúc</button>
+          </div>
+        `).join('');
+      }
 
       showView('unit-detail-view');
     }
@@ -2485,7 +2984,9 @@
     function startFlashcardsForCurrentUnit() {
       if (!currentUnit) return;
       fcScope = String(currentUnit.unit);
-      document.getElementById('fc-scope-select').value = fcScope;
+      const sel = document.getElementById('fc-scope-select');
+      if (sel) sel.value = fcScope;
+      updateFCUnitTabs();
       startFlashcards();
     }
 
@@ -2625,9 +3126,48 @@
     }
 
     /* FLASHCARDS LOGIC */
+    function renderFCUnitTabs() {
+      const container = document.getElementById('fc-unit-tabs-wrap');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const allPill = document.createElement('button');
+      allPill.className = 'fc-unit-tab-pill' + (fcScope === 'all' ? ' active' : '');
+      allPill.innerText = '🌟 Tất cả (64 từ)';
+      allPill.onclick = () => {
+        changeFCScope('all');
+      };
+      container.appendChild(allPill);
+
+      courseData.forEach(u => {
+        const pill = document.createElement('button');
+        pill.className = 'fc-unit-tab-pill' + (fcScope === String(u.unit) ? ' active' : '');
+        pill.innerText = `Unit ${u.unit}: ${u.letter}`;
+        pill.title = `Unit ${u.unit}: ${u.title} (4 từ)`;
+        pill.onclick = () => {
+          changeFCScope(String(u.unit));
+        };
+        container.appendChild(pill);
+      });
+    }
+
+    function updateFCUnitTabs() {
+      const sel = document.getElementById('fc-scope-select');
+      if (sel) sel.value = fcScope;
+      document.querySelectorAll('.fc-unit-tab-pill').forEach((pill, idx) => {
+        if (idx === 0) {
+          pill.classList.toggle('active', fcScope === 'all');
+        } else if (courseData[idx - 1]) {
+          pill.classList.toggle('active', fcScope === String(courseData[idx - 1].unit));
+        }
+      });
+    }
+
     function startFlashcards() {
       filterFCVocab();
       fcIndex = 0;
+      renderFCUnitTabs();
+      updateFCUnitTabs();
       showView('flashcard-view');
       renderFC();
     }
@@ -2636,6 +3176,7 @@
       fcScope = scopeVal;
       filterFCVocab();
       fcIndex = 0;
+      updateFCUnitTabs();
       renderFC();
     }
 
@@ -2734,11 +3275,16 @@
         card.className = 'song-card';
         card.onclick = () => openSongPlayer(song.id);
 
+        const unitPills = (song.units && song.units.length > 0)
+          ? `<div class="song-units-list">${song.units.map(u => `<span class="song-unit-pill">Unit ${u}</span>`).join('')}</div>`
+          : '';
+
         card.innerHTML = `
           <div class="song-card-header">
             <span class="song-theme-badge">${song.theme}</span>
             <span style="font-size: 1.1rem; color: #F59E0B; font-weight: 700;">⭐ ${song.lyrics.length} câu</span>
           </div>
+          ${unitPills}
           <div class="song-icon-circle" style="background: ${song.color}20;">
             ${song.icon}
           </div>
