@@ -3,22 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ứng dụng học Tiếng Anh lớp 1 theo chuẩn sách giáo khoa Global Success - Phát âm chuẩn giọng nữ trong trẻo, hình ảnh minh họa vector hoạt hình sống động, trò chơi đố vui và thẻ flashcard thông minh.">
   <title>Tiếng Anh 1 - Global Success 🌟</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Fallback dữ liệu và thư viện hình minh họa SVG -->
+  <script src="./course_data.js"></script>
+  <script src="./illustrations.js"></script>
   <style>
     :root {
-      --primary: #FF6B6B;
-      --primary-light: #FFE5E5;
+      --primary: #FF5E62;
+      --primary-gradient: linear-gradient(135deg, #FF6B6B, #FF8E53);
       --secondary: #4ECDC4;
+      --secondary-dark: #10B981;
       --accent: #FFE66D;
-      --purple: #9D4EDD;
-      --blue: #1A73E8;
-      --dark: #2B2D42;
-      --bg: #F7F9FC;
+      --purple: #8B5CF6;
+      --purple-gradient: linear-gradient(135deg, #7C3AED, #A855F7);
+      --blue: #3B82F6;
+      --blue-gradient: linear-gradient(135deg, #2563EB, #60A5FA);
+      --dark: #1E293B;
+      --light-text: #64748B;
+      --bg: #F0F4F8;
       --card-bg: #FFFFFF;
-      --shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
-      --radius: 20px;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.08), 0 8px 12px -6px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 20px 35px -8px rgba(255, 107, 107, 0.25);
+      --radius: 22px;
+      --radius-sm: 14px;
     }
 
     * {
@@ -26,6 +40,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -34,14 +49,16 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background-image: radial-gradient(#E2E8F0 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
     }
 
     /* HEADER */
     header {
-      background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+      background: var(--primary-gradient);
       color: white;
-      padding: 1rem 2rem;
-      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      padding: 0.8rem 1.8rem;
+      box-shadow: 0 6px 20px rgba(255, 94, 98, 0.3);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -53,30 +70,77 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-family: 'Fredoka', cursive;
       font-size: 1.6rem;
       font-weight: 700;
       cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
     }
 
     .logo span {
       background: var(--accent);
-      color: var(--dark);
-      padding: 2px 10px;
+      color: #92400E;
+      padding: 3px 10px;
       border-radius: 12px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .star-counter-badge {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #FFFDF0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .star-counter-badge:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .star-counter-badge .star-icon {
+      font-size: 1.3rem;
+      animation: spin-soft 3s infinite ease-in-out alternate;
+    }
+
+    @keyframes spin-soft {
+      0% { transform: scale(1) rotate(-8deg); }
+      100% { transform: scale(1.15) rotate(8deg); }
     }
 
     .nav-tabs {
       display: flex;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.2);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.22);
       padding: 5px;
       border-radius: 30px;
       backdrop-filter: blur(10px);
@@ -86,12 +150,12 @@
       border: none;
       background: transparent;
       color: white;
-      padding: 8px 18px;
+      padding: 7px 16px;
       border-radius: 20px;
       font-weight: 700;
       font-size: 0.95rem;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -100,98 +164,191 @@
     .nav-btn.active, .nav-btn:hover {
       background: white;
       color: var(--primary);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      transform: translateY(-1px);
     }
 
-    /* MAIN CONTAINER */
+    .voice-settings-btn {
+      background: rgba(255, 255, 255, 0.22);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+    }
+
+    .voice-settings-btn:hover {
+      background: white;
+      color: var(--primary);
+      transform: rotate(30deg);
+    }
+
+    /* MAIN CONTENT */
     main {
       flex: 1;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.8rem;
     }
 
-    /* HOME / UNITS LIST VIEW */
+    /* VIEW 1: HOME - UNITS GRID */
+    .section-header-banner {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.4rem 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      border: 2px solid #E2E8F0;
+    }
+
     .section-title {
       font-family: 'Fredoka', cursive;
       font-size: 1.8rem;
       color: var(--dark);
-      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
+    .voice-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F0FDF4;
+      border: 1.5px solid #86EFAC;
+      color: #166534;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .voice-status-pill:hover {
+      background: #DCFCE7;
+    }
+
     .units-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
       gap: 1.5rem;
     }
 
     .unit-card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 1.4rem;
       box-shadow: var(--shadow);
       border: 3px solid transparent;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
     }
 
     .unit-card:hover {
       transform: translateY(-8px);
       border-color: var(--secondary);
-      box-shadow: 0 15px 30px rgba(78, 205, 196, 0.25);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .unit-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
     }
 
     .unit-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--primary-light);
+      background: #FFF1F2;
       color: var(--primary);
       font-family: 'Fredoka', cursive;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 4px 12px;
+      border-radius: 14px;
+      border: 1.5px solid #FECDD3;
     }
 
-    .unit-card h3 {
-      font-family: 'Fredoka', cursive;
-      font-size: 1.2rem;
-      color: var(--dark);
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      padding-right: 45px;
+    .unit-stars-indicator {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 1rem;
+      color: #F59E0B;
     }
 
     .unit-letter-box {
       display: inline-block;
-      background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+      background: linear-gradient(135deg, #4ECDC4, #2CB1A6);
       color: white;
       font-family: 'Fredoka', cursive;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       padding: 4px 14px;
       border-radius: 12px;
+      margin-bottom: 0.6rem;
+      align-self: flex-start;
+      box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
+    }
+
+    .unit-card h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.25rem;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .unit-card .unit-subtitle {
+      color: var(--light-text);
+      font-size: 0.9rem;
+      font-weight: 600;
       margin-bottom: 1rem;
     }
 
-    .unit-vocab-preview {
-      display: flex;
+    /* MINI ART PREVIEWS IN CARDS */
+    .unit-art-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      font-size: 1.4rem;
-      margin-top: 0.8rem;
+      margin-top: auto;
+      background: #F8FAFC;
+      padding: 8px;
+      border-radius: 14px;
+      border: 1px solid #E2E8F0;
     }
 
-    /* UNIT DETAIL VIEW */
+    .unit-art-preview-item {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+      transition: transform 0.2s;
+    }
+
+    .unit-card:hover .unit-art-preview-item {
+      transform: scale(1.05);
+    }
+
+    /* VIEW 2: UNIT DETAIL */
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -199,21 +356,25 @@
       background: white;
       border: 2px solid #E2E8F0;
       color: var(--dark);
-      padding: 8px 16px;
-      border-radius: 12px;
+      padding: 9px 18px;
+      border-radius: 14px;
       font-weight: 700;
+      font-size: 0.95rem;
       cursor: pointer;
       margin-bottom: 1.5rem;
       transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
     }
 
     .back-btn:hover {
-      background: #F1F5F9;
-      border-color: #CBD5E1;
+      background: #F8FAFC;
+      border-color: var(--secondary);
+      color: var(--secondary);
+      transform: translateX(-3px);
     }
 
     .unit-header-banner {
-      background: linear-gradient(135deg, #6C5CE7, #8075E5);
+      background: var(--purple-gradient);
       color: white;
       border-radius: var(--radius);
       padding: 2rem;
@@ -221,29 +382,61 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 2rem;
-      box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
+      box-shadow: 0 12px 28px rgba(124, 58, 237, 0.25);
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .unit-header-title h1 {
       font-family: 'Fredoka', cursive;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       margin-bottom: 0.4rem;
     }
 
     .unit-header-title p {
-      font-size: 1.1rem;
-      opacity: 0.9;
+      font-size: 1.15rem;
+      opacity: 0.95;
+      font-weight: 600;
+    }
+
+    .unit-header-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-quick-play {
+      background: var(--accent);
+      color: #78350F;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: all 0.2s;
+    }
+
+    .btn-quick-play:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: #FEF08A;
     }
 
     .unit-phonics-badge {
-      background: var(--accent);
-      color: var(--dark);
+      background: white;
+      color: var(--purple);
       font-family: 'Fredoka', cursive;
       font-size: 2.2rem;
-      padding: 0.5rem 1.8rem;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      padding: 0.6rem 2rem;
+      border-radius: 22px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       text-align: center;
+      font-weight: 700;
     }
 
     .section-block {
@@ -252,119 +445,156 @@
       padding: 1.8rem;
       margin-bottom: 2rem;
       box-shadow: var(--shadow);
+      border: 2px solid #F1F5F9;
     }
 
     .block-title {
       font-family: 'Fredoka', cursive;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       color: var(--dark);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.3rem;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    /* VOCAB GRID */
+    /* VOCABULARY GRID */
     .vocab-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.4rem;
     }
 
     .vocab-card {
       background: #F8FAFC;
-      border: 2px solid #E2E8F0;
-      border-radius: 16px;
-      padding: 1.2rem;
+      border: 2.5px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 1.3rem;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
+      overflow: hidden;
     }
 
     .vocab-card:hover {
-      transform: scale(1.04);
-      border-color: var(--secondary);
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--primary);
       background: white;
-      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.2);
+      box-shadow: 0 12px 25px rgba(255, 94, 98, 0.2);
     }
 
-    .vocab-icon {
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
+    .vocab-illustration-box {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 0.8rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: transform 0.3s;
+    }
+
+    .vocab-card:hover .vocab-illustration-box {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .vocab-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .vocab-word {
       font-family: 'Fredoka', cursive;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: var(--primary);
+      margin-bottom: 0.2rem;
     }
 
     .vocab-vi {
-      color: #64748B;
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-top: 0.2rem;
+      color: var(--light-text);
+      font-size: 1rem;
+      font-weight: 700;
     }
 
-    .audio-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0,0,0,0.05);
-      border: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
+    .audio-btn-pill {
+      margin-top: 0.8rem;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.8rem;
+      gap: 6px;
+      background: #FFF1F2;
+      color: var(--primary);
+      border: 1.5px solid #FECDD3;
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .vocab-card:hover .audio-btn-pill {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
     /* SENTENCES & CHANT */
     .sentence-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .sentence-card {
       background: #F0FDF4;
-      border-left: 5px solid #22C55E;
-      padding: 1.2rem;
-      border-radius: 0 14px 14px 0;
+      border-left: 6px solid #22C55E;
+      padding: 1.3rem 1.6rem;
+      border-radius: 0 16px 16px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.08);
+      gap: 15px;
     }
 
     .sentence-en {
       font-family: 'Fredoka', cursive;
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       color: #15803D;
+      line-height: 1.3;
     }
 
     .sentence-vi {
       color: #4B5563;
       font-weight: 600;
-      font-size: 0.95rem;
-      margin-top: 0.2rem;
+      font-size: 1.05rem;
+      margin-top: 0.3rem;
     }
 
     .speak-btn {
       background: #22C55E;
       color: white;
       border: none;
-      padding: 8px 14px;
-      border-radius: 10px;
+      padding: 9px 16px;
+      border-radius: 12px;
       font-weight: 700;
+      font-size: 0.95rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: transform 0.1s;
+      gap: 8px;
+      transition: all 0.15s;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+    }
+
+    .speak-btn:hover {
+      background: #16A34A;
+      transform: translateY(-2px);
     }
 
     .speak-btn:active {
@@ -373,54 +603,142 @@
 
     .chant-box {
       background: #FFFBEB;
-      border: 2px dashed #F59E0B;
-      border-radius: 16px;
-      padding: 1.5rem;
+      border: 2.5px dashed #F59E0B;
+      border-radius: 20px;
+      padding: 1.8rem;
       white-space: pre-line;
-      font-size: 1.15rem;
-      line-height: 1.8;
+      font-size: 1.25rem;
+      line-height: 1.9;
       font-weight: 600;
       color: #92400E;
+      letter-spacing: 0.3px;
     }
 
-    /* GAME SECTION */
-    .game-container {
-      background: white;
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      text-align: center;
-      max-width: 650px;
+    /* VIEW 3: QUIZ GAME */
+    .game-wrapper {
+      max-width: 720px;
       margin: 0 auto;
     }
 
-    .game-header {
+    .game-container {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 2px solid #E2E8F0;
+      position: relative;
+    }
+
+    .game-top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .game-scope-select {
+      font-family: 'Fredoka', cursive;
+      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: 2px solid #CBD5E1;
+      background: #F8FAFC;
+      color: var(--dark);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .game-mode-toggle {
+      display: flex;
+      gap: 6px;
+      background: #F1F5F9;
+      padding: 4px;
+      border-radius: 16px;
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      color: var(--light-text);
+      transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .score-board {
       font-family: 'Fredoka', cursive;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       background: #FEF3C7;
-      color: #D97706;
+      color: #B45309;
       padding: 6px 16px;
       border-radius: 20px;
+      border: 1.5px solid #FDE68A;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .game-question {
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
-      animation: pulse 1.5s infinite;
+    .quiz-question-card {
+      background: #F8FAFC;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.8rem;
+      border: 2px solid #E2E8F0;
+    }
+
+    .quiz-illustration {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1rem auto;
+      background: white;
+      border-radius: 24px;
+      padding: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      animation: gentle-bounce 2s infinite ease-in-out;
+    }
+
+    .quiz-listen-replay-btn {
+      background: var(--blue-gradient);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s;
+    }
+
+    .quiz-listen-replay-btn:hover {
+      transform: scale(1.06);
+    }
+
+    @keyframes gentle-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .game-prompt {
       font-family: 'Fredoka', cursive;
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       color: var(--dark);
-      margin-bottom: 1.8rem;
+      margin-top: 0.5rem;
     }
 
     .options-grid {
@@ -430,40 +748,76 @@
     }
 
     .option-btn {
-      background: #F1F5F9;
-      border: 2px solid #CBD5E1;
+      background: #F8FAFC;
+      border: 2.5px solid #CBD5E1;
       padding: 1.2rem;
-      border-radius: 16px;
+      border-radius: 18px;
       font-family: 'Fredoka', cursive;
-      font-size: 1.2rem;
+      font-size: 1.35rem;
+      color: var(--dark);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 80px;
     }
 
     .option-btn:hover {
-      background: var(--primary-light);
+      background: #FFF1F2;
       border-color: var(--primary);
       color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .option-btn .option-art {
+      width: 70px;
+      height: 70px;
     }
 
     .option-btn.correct {
       background: #DCFCE7 !important;
       border-color: #22C55E !important;
       color: #15803D !important;
+      transform: scale(1.03);
     }
 
     .option-btn.wrong {
       background: #FEE2E2 !important;
       border-color: #EF4444 !important;
       color: #B91C1C !important;
+      animation: shake 0.4s ease-in-out;
     }
 
-    /* FLASHCARDS */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    /* VIEW 4: FLASHCARDS */
+    .flashcard-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .flashcard-controls-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .flashcard-container {
       perspective: 1000px;
-      width: 320px;
-      height: 220px;
-      margin: 0 auto 1.5rem auto;
+      width: 100%;
+      height: 320px;
+      margin: 0 auto 1.8rem auto;
       cursor: pointer;
     }
 
@@ -472,9 +826,9 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 26px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
     }
 
     .flashcard.flipped {
@@ -486,12 +840,12 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: var(--radius);
+      border-radius: 26px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 1.8rem;
       border: 3px solid #E2E8F0;
     }
 
@@ -500,51 +854,219 @@
     }
 
     .card-back {
-      background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+      background: linear-gradient(135deg, #4ECDC4, #3B82F6);
       color: white;
       transform: rotateY(180deg);
+      border-color: #38BDF8;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+    .card-art-box {
+      width: 130px;
+      height: 130px;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-word-en {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.2rem;
+      color: var(--primary);
+    }
+
+    .card-word-vi {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.2rem;
+      color: #FFFDF0;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-hint {
+      font-size: 0.95rem;
+      color: var(--light-text);
+      margin-top: 0.4rem;
+    }
+
+    .card-back .card-hint {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .flashcard-nav-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* VOICE SETTINGS MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 1rem;
+      transition: opacity 0.2s;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--radius);
+      max-width: 520px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      border: 2px solid #E2E8F0;
+      animation: modal-enter 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modal-enter {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-header h2 {
+      font-family: 'Fredoka', cursive;
+      color: var(--dark);
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .close-modal-btn {
+      background: #F1F5F9;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 2px solid #CBD5E1;
+      font-size: 1rem;
+      background: #F8FAFC;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .slider-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--primary);
+    }
+
+    .slider-val {
+      font-weight: 700;
+      width: 40px;
+      color: var(--primary);
     }
 
     .hidden {
       display: none !important;
     }
 
-    /* Responsive */
-    @media (max-width: 640px) {
+    /* FOOTER */
+    footer {
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      padding: 1.2rem;
+      text-align: center;
+      color: var(--light-text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
       main { padding: 1rem; }
+      header { padding: 0.8rem 1rem; }
       .header-container { flex-direction: column; gap: 10px; }
       .unit-header-banner { flex-direction: column; text-align: center; gap: 15px; }
+      .unit-phonics-badge { align-self: center; }
       .options-grid { grid-template-columns: 1fr; }
+      .sentence-card { flex-direction: column; align-items: flex-start; }
+      .speak-btn { align-self: flex-end; }
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="header-container">
       <div class="logo" onclick="showView('units-view')">
         🎈 Tiếng Anh 1 <span>Global Success</span>
       </div>
-      <div class="nav-tabs">
-        <button class="nav-btn active" id="tab-units" onclick="showView('units-view')">📚 Bài học</button>
-        <button class="nav-btn" id="tab-game" onclick="startQuiz()">🎮 Trò chơi</button>
-        <button class="nav-btn" id="tab-cards" onclick="startFlashcards()">🎴 Flashcards</button>
+
+      <div class="header-right">
+        <!-- Star score button -->
+        <div class="star-counter-badge" title="Tổng số sao đạt được!" onclick="showView('units-view')">
+          <span class="star-icon">⭐</span>
+          <span id="header-total-stars">0</span> Sao
+        </div>
+
+        <!-- Navigation tabs -->
+        <nav class="nav-tabs" aria-label="Điều hướng">
+          <button class="nav-btn active" id="tab-units" onclick="showView('units-view')">📚 Bài học</button>
+          <button class="nav-btn" id="tab-game" onclick="startQuiz()">🎮 Trò chơi</button>
+          <button class="nav-btn" id="tab-cards" onclick="startFlashcards()">🎴 Thẻ từ</button>
+        </nav>
+
+        <!-- Voice Settings Button -->
+        <button class="voice-settings-btn" title="Cài đặt giọng đọc nữ & tốc độ" onclick="openVoiceModal()" aria-label="Cài đặt giọng đọc">
+          ⚙️
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main>
     <!-- VIEW 1: UNITS LIST -->
     <div id="units-view">
-      <div class="section-title">
-        <span>🎒</span> Chọn bài học của em:
+      <div class="section-header-banner">
+        <div class="section-title">
+          <span>🎒</span> Các bài học Tiếng Anh Lớp 1:
+        </div>
+        <div class="voice-status-pill" onclick="openVoiceModal()" title="Nhấp để thay đổi giọng đọc">
+          <span>🔊</span> <span id="current-voice-name-pill">Giọng nữ: Đang tải...</span> ✏️
+        </div>
       </div>
+
       <div class="units-grid" id="units-grid-container">
         <!-- Dynamically populated -->
       </div>
@@ -552,12 +1074,20 @@
 
     <!-- VIEW 2: UNIT DETAIL -->
     <div id="unit-detail-view" class="hidden">
-      <button class="back-btn" onclick="showView('units-view')">⬅ Quay lại danh sách</button>
+      <button class="back-btn" onclick="showView('units-view')">⬅ Quay lại danh sách bài</button>
       
       <div class="unit-header-banner">
         <div class="unit-header-title">
           <h1 id="detail-title">Unit 1: In the school playground</h1>
           <p id="detail-subtitle">Chủ đề: Sân trường</p>
+          <div class="unit-header-actions" style="margin-top: 15px;">
+            <button class="btn-quick-play" onclick="startQuizForCurrentUnit()">
+              🎮 Luyện tập Unit này
+            </button>
+            <button class="btn-quick-play" style="background: white; color: var(--purple);" onclick="startFlashcardsForCurrentUnit()">
+              🎴 Flashcard Unit này
+            </button>
+          </div>
         </div>
         <div class="unit-phonics-badge" id="detail-letter">
           Bb /b/
@@ -565,104 +1095,471 @@
       </div>
 
       <!-- VOCABULARY -->
-      <div class="section-block">
+      <section class="section-block">
         <div class="block-title">
-          <span>🔊</span> Từ vựng & Phát âm (Nhấp vào hình để nghe đọc)
+          <span>🎨</span> Từ vựng & Phát âm (Nhấp vào thẻ để nghe giọng đọc)
         </div>
         <div class="vocab-grid" id="detail-vocab-grid">
-          <!-- Dynamically populated -->
+          <!-- Dynamically populated with rich SVGs -->
         </div>
-      </div>
+      </section>
 
       <!-- SENTENCES -->
-      <div class="section-block">
+      <section class="section-block">
         <div class="block-title">
           <span>💬</span> Mẫu câu giao tiếp (Sentence Patterns)
         </div>
         <div class="sentence-list" id="detail-sentence-list">
           <!-- Dynamically populated -->
         </div>
-      </div>
+      </section>
 
       <!-- CHANT -->
-      <div class="section-block">
+      <section class="section-block">
         <div class="block-title">
-          <span>🎵</span> Bài vè nghe nhạc (Listen and chant)
+          <span>🎵</span> Bài vè vui nhộn (Listen and chant)
         </div>
         <div class="chant-box" id="detail-chant">
           <!-- Dynamically populated -->
         </div>
-        <button style="margin-top: 15px;" class="speak-btn" id="chant-speech-btn" onclick="speakChant()">🔊 Đọc bài vè</button>
-      </div>
+        <button style="margin-top: 16px;" class="speak-btn" id="chant-speech-btn" onclick="speakChant()">
+          🔊 Đọc to bài vè cùng cô giáo
+        </button>
+      </section>
     </div>
 
     <!-- VIEW 3: QUIZ GAME -->
     <div id="game-view" class="hidden">
-      <div class="game-container">
-        <div class="game-header">
-          <button class="back-btn" onclick="showView('units-view')">❌ Thoát</button>
-          <div class="score-board">⭐ Điểm: <span id="game-score">0</span></div>
-        </div>
+      <div class="game-wrapper">
+        <button class="back-btn" onclick="showView('units-view')">⬅ Thoát trò chơi</button>
 
-        <div class="game-question" id="game-emoji">⚽</div>
-        <div class="game-prompt" id="game-prompt">Đây là từ gì trong tiếng Anh?</div>
+        <div class="game-container">
+          <div class="game-top-bar">
+            <!-- Unit scope selector -->
+            <select id="game-scope-select" class="game-scope-select" onchange="changeQuizScope(this.value)">
+              <option value="all">🌟 Tất cả 16 Units</option>
+              <!-- Will populate units -->
+            </select>
 
-        <div class="options-grid" id="game-options">
-          <!-- Dynamically populated -->
+            <!-- Quiz mode: Visual or Listening -->
+            <div class="game-mode-toggle">
+              <button class="mode-btn active" id="mode-visual-btn" onclick="setQuizMode('visual')">👁️ Nhìn hình</button>
+              <button class="mode-btn" id="mode-listen-btn" onclick="setQuizMode('listening')">🎧 Luyện nghe</button>
+            </div>
+
+            <!-- Score -->
+            <div class="score-board">
+              <span>⭐ Điểm:</span> <strong id="game-score">0</strong>
+            </div>
+          </div>
+
+          <!-- Question Card -->
+          <div class="quiz-question-card">
+            <!-- Visual Question Area -->
+            <div id="quiz-visual-box">
+              <div class="quiz-illustration" id="game-art-container">
+                <!-- SVG illustration -->
+              </div>
+            </div>
+
+            <!-- Listening Question Area (Hidden in visual mode) -->
+            <div id="quiz-listen-box" class="hidden">
+              <button class="quiz-listen-replay-btn" onclick="replayQuizAudio()">
+                <span>🔊</span> Bấm để nghe lại âm thanh
+              </button>
+            </div>
+
+            <div class="game-prompt" id="game-prompt">
+              Đây là từ gì trong tiếng Anh?
+            </div>
+          </div>
+
+          <!-- Options Grid -->
+          <div class="options-grid" id="game-options">
+            <!-- Dynamically populated -->
+          </div>
         </div>
       </div>
     </div>
 
     <!-- VIEW 4: FLASHCARDS -->
     <div id="flashcard-view" class="hidden">
-      <button class="back-btn" onclick="showView('units-view')">⬅ Quay lại</button>
-      <div class="game-container">
-        <h2 style="font-family: 'Fredoka'; margin-bottom: 1rem;">🎴 Thẻ từ vựng thông minh</h2>
-        <p style="color: #64748B; margin-bottom: 1.5rem;">Nhấp vào thẻ để lật xem nghĩa tiếng Việt & nghe đọc!</p>
+      <div class="flashcard-wrapper">
+        <button class="back-btn" onclick="showView('units-view')">⬅ Quay lại danh sách</button>
 
-        <div class="flashcard-container" onclick="flipCard()">
-          <div class="flashcard" id="active-card">
-            <div class="card-front">
-              <div style="font-size: 4rem;" id="fc-icon">📚</div>
-              <div style="font-family: 'Fredoka'; font-size: 1.8rem; color: var(--primary); margin-top: 10px;" id="fc-word">book</div>
-            </div>
-            <div class="card-back">
-              <div style="font-size: 1.8rem; font-weight: 700;" id="fc-vi">quyển sách</div>
-              <div style="margin-top: 10px; font-size: 0.95rem; opacity: 0.9;">Nhấp lần nữa để lật lại</div>
+        <div class="game-container">
+          <div class="flashcard-controls-top">
+            <select id="fc-scope-select" class="game-scope-select" onchange="changeFCScope(this.value)">
+              <option value="all">🌟 Tất cả 16 Units</option>
+              <!-- Will populate units -->
+            </select>
+
+            <div style="font-family: 'Fredoka'; font-weight: 700; color: var(--light-text);" id="fc-counter">
+              Thẻ 1 / 64
             </div>
           </div>
-        </div>
 
-        <div style="display: flex; justify-content: center; gap: 15px;">
-          <button class="speak-btn" style="background: #3B82F6;" onclick="prevCard()">⬅ Thẻ trước</button>
-          <button class="speak-btn" style="background: var(--primary);" onclick="speakWord(currentFC.word)">🔊 Nghe phát âm</button>
-          <button class="speak-btn" style="background: #3B82F6;" onclick="nextCard()">Thẻ sau ➡</button>
+          <p style="color: var(--light-text); font-weight: 600; margin-bottom: 1.2rem;">
+            💡 Chạm vào thẻ để lật xem nghĩa & nghe phát âm tiếng Anh
+          </p>
+
+          <div class="flashcard-container" onclick="flipCard()">
+            <div class="flashcard" id="active-card">
+              <!-- FRONT -->
+              <div class="card-front">
+                <div class="card-art-box" id="fc-art">
+                  <!-- SVG -->
+                </div>
+                <div class="card-word-en" id="fc-word">book</div>
+                <div class="card-hint">🔊 Chạm để lật sang Tiếng Việt</div>
+              </div>
+              <!-- BACK -->
+              <div class="card-back">
+                <div style="font-size: 2.8rem; margin-bottom: 5px;">🇻🇳</div>
+                <div class="card-word-vi" id="fc-vi">quyển sách</div>
+                <div class="card-hint">Chạm lần nữa để lật lại</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard-nav-actions">
+            <button class="speak-btn" style="background: #3B82F6;" onclick="prevCard()">⬅ Thẻ trước</button>
+            <button class="speak-btn" style="background: var(--primary);" onclick="speakWord(currentFC.word)">🔊 Nghe phát âm</button>
+            <button class="speak-btn" style="background: #3B82F6;" onclick="nextCard()">Thẻ sau ➡</button>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- VOICE SETTINGS MODAL -->
+  <div id="voice-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><span>🔊</span> Cài đặt Giọng đọc Nữ</h2>
+        <button class="close-modal-btn" onclick="closeVoiceModal()">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label for="voice-select">Chọn giọng đọc tiếng Anh:</label>
+        <select id="voice-select" class="form-control" onchange="onVoiceSelected(this.value)">
+          <!-- Populated by JavaScript with preferred female voices -->
+        </select>
+        <small style="color: #64748B; font-size: 0.85rem; margin-top: 4px; display: block;">
+          ✨ Hệ thống tự động ưu tiên giọng nữ trong trẻo, tự nhiên (Jenny, Aria, Google US English, Samantha...).
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="voice-pitch">Độ cao thanh giọng (Pitch):</label>
+        <div class="slider-row">
+          <input type="range" id="voice-pitch" min="0.8" max="1.5" step="0.05" value="1.15" oninput="updatePitchVal(this.value)">
+          <span class="slider-val" id="pitch-val">1.15</span>
+        </div>
+        <small style="color: #64748B; font-size: 0.85rem;">Mức 1.15 - 1.2 giúp giọng nữ cao, trong và vui tươi hợp với bé lớp 1.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="voice-rate">Tốc độ đọc (Rate):</label>
+        <div class="slider-row">
+          <input type="range" id="voice-rate" min="0.6" max="1.2" step="0.05" value="0.85" oninput="updateRateVal(this.value)">
+          <span class="slider-val" id="rate-val">0.85</span>
+        </div>
+        <small style="color: #64748B; font-size: 0.85rem;">Mức 0.85 đọc vừa vặn, chuẩn từng âm tiết để bé dễ nghe theo.</small>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="speak-btn" style="flex: 1; justify-content: center; background: var(--blue);" onclick="testCurrentVoice()">
+          🔊 Nghe thử giọng đọc
+        </button>
+        <button class="speak-btn" style="background: var(--primary);" onclick="closeVoiceModal()">
+          Lưu & Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    🌟 Tiếng Anh 1 - Global Success | Thiết kế trực quan cho học sinh lớp 1 với giọng đọc nữ chuẩn & hình minh họa sinh động
+  </footer>
+
   <script>
-    let courseData = [];
+    // GLOBAL STATE
+    let courseData = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA : [];
     let currentUnit = null;
+
+    // TTS Female Voice Settings
+    let femaleVoice = null;
+    let availableVoices = [];
+    let voicePitch = 1.15; // Bright, high, kid-friendly pitch
+    let voiceRate = 0.85;  // Clear, articulate pacing for grade 1
+
+    // Utterance reference to prevent Chromium GC bug
+    window.activeUtterance = null;
+
+    // Web Audio API for cute SFX
+    let audioCtx = null;
 
     // Game state
     let quizScore = 0;
+    let quizScope = 'all'; // 'all' or unit number
+    let quizMode = 'visual'; // 'visual' or 'listening'
     let currentQuizItem = null;
+    let quizFilterVocab = [];
 
     // Flashcard state
     let allVocabList = [];
+    let fcFilterVocab = [];
+    let fcScope = 'all';
     let fcIndex = 0;
     let currentFC = null;
 
-    // Load dataset
-    fetch('./course_data.json')
-      .then(res => res.json())
-      .then(data => {
-        courseData = data;
-        renderUnitsGrid();
-        buildVocabList();
+    // Stars Gamification
+    let earnedStars = {}; // { [unit]: number }
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedStars();
+
+      // If COURSE_DATA wasn't preloaded, fetch course_data.json
+      if (!courseData || courseData.length === 0) {
+        fetch('./course_data.json')
+          .then(res => res.json())
+          .then(data => {
+            courseData = data;
+            initApp();
+          })
+          .catch(err => {
+            console.error('Fetch error:', err);
+          });
+      } else {
+        initApp();
+      }
+
+      initVoices();
+    });
+
+    function initApp() {
+      buildVocabList();
+      renderUnitsGrid();
+      populateScopeSelectors();
+      updateTotalStarsBadge();
+    }
+
+    /* SOUND EFFECTS (Web Audio API) */
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSuccessSound() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        // Cute pentatonic ascending chime (G5, C6)
+        const notes = [783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+          gain.gain.setValueAtTime(0.18, now + idx * 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.12);
+          osc.stop(now + idx * 0.12 + 0.35);
+        });
+      } catch (e) {
+        console.warn('Audio SFX error', e);
+      }
+    }
+
+    function playWrongSound() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(260, now);
+        osc.frequency.exponentialRampToValueAtTime(180, now + 0.25);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch (e) {
+        console.warn('Audio SFX error', e);
+      }
+    }
+
+    /* VOICE SYNTHESIS (Female Voice Preference & High Clear Tone) */
+    function initVoices() {
+      if (!('speechSynthesis' in window)) {
+        document.getElementById('current-voice-name-pill').innerText = 'Không hỗ trợ TTS';
+        return;
+      }
+
+      function populate() {
+        const voices = window.speechSynthesis.getVoices();
+        if (!voices || voices.length === 0) return;
+        availableVoices = voices;
+        pickBestFemaleVoice();
+        renderVoiceSelectOptions();
+      }
+
+      populate();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populate;
+      }
+    }
+
+    function pickBestFemaleVoice() {
+      if (!availableVoices.length) return;
+
+      const englishVoices = availableVoices.filter(v => v.lang.startsWith('en'));
+
+      // Priority candidates for natural, clear, high female voices
+      const topFemalePicks = [
+        'jenny', 'aria', 'natural', 'google us english', 'samantha', 'victoria', 'zira', 'karen', 'female'
+      ];
+
+      let selected = null;
+
+      for (const keyword of topFemalePicks) {
+        selected = englishVoices.find(v => v.name.toLowerCase().includes(keyword));
+        if (selected) break;
+      }
+
+      // Fallback to any en-US or en voice
+      if (!selected) {
+        selected = englishVoices.find(v => v.lang === 'en-US') || englishVoices[0] || availableVoices[0];
+      }
+
+      femaleVoice = selected;
+      const cleanName = femaleVoice.name.replace(/Microsoft |Google |Online \(Natural\) - /g, '');
+      const pillEl = document.getElementById('current-voice-name-pill');
+      if (pillEl) pillEl.innerText = `Giọng nữ: ${cleanName}`;
+    }
+
+    function renderVoiceSelectOptions() {
+      const select = document.getElementById('voice-select');
+      if (!select) return;
+      select.innerHTML = '';
+
+      const englishVoices = availableVoices.filter(v => v.lang.startsWith('en'));
+      englishVoices.forEach((v, idx) => {
+        const opt = document.createElement('option');
+        opt.value = v.name;
+        const isFemaleHint = /jenny|aria|samantha|victoria|zira|karen|female/i.test(v.name);
+        opt.innerText = `${v.name} (${v.lang}) ${isFemaleHint ? '👧 (Giọng nữ trong)' : ''}`;
+        if (femaleVoice && femaleVoice.name === v.name) {
+          opt.selected = true;
+        }
+        select.appendChild(opt);
       });
+    }
+
+    function onVoiceSelected(voiceName) {
+      const v = availableVoices.find(item => item.name === voiceName);
+      if (v) {
+        femaleVoice = v;
+        const cleanName = femaleVoice.name.replace(/Microsoft |Google |Online \(Natural\) - /g, '');
+        document.getElementById('current-voice-name-pill').innerText = `Giọng nữ: ${cleanName}`;
+      }
+    }
+
+    function updatePitchVal(val) {
+      voicePitch = parseFloat(val);
+      document.getElementById('pitch-val').innerText = val;
+    }
+
+    function updateRateVal(val) {
+      voiceRate = parseFloat(val);
+      document.getElementById('rate-val').innerText = val;
+    }
+
+    function testCurrentVoice() {
+      speakText("Hello! Welcome to English Grade 1. Let's learn together!");
+    }
+
+    function openVoiceModal() {
+      document.getElementById('voice-modal').classList.remove('hidden');
+    }
+
+    function closeVoiceModal() {
+      document.getElementById('voice-modal').classList.add('hidden');
+    }
+
+    function speakWord(word) {
+      speakText(word);
+    }
+
+    function speakText(text, onComplete) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop any pending speech
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (femaleVoice) {
+          utterance.voice = femaleVoice;
+        }
+        utterance.lang = femaleVoice ? femaleVoice.lang : 'en-US';
+        utterance.pitch = voicePitch;
+        utterance.rate = voiceRate;
+
+        // Prevent Chromium garbage collection
+        window.activeUtterance = utterance;
+
+        utterance.onend = () => {
+          window.activeUtterance = null;
+          if (typeof onComplete === 'function') onComplete();
+        };
+
+        utterance.onerror = (e) => {
+          console.warn('TTS error:', e);
+          window.activeUtterance = null;
+          if (typeof onComplete === 'function') onComplete();
+        };
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('Trình duyệt không hỗ trợ phát âm tự động.');
+        if (typeof onComplete === 'function') onComplete();
+      }
+    }
+
+    function speakChant() {
+      if (currentUnit && currentUnit.chant) {
+        speakText(currentUnit.chant);
+      }
+    }
+
+    /* DATA PROCESSING & UNITS RENDERING */
+    function buildVocabList() {
+      allVocabList = [];
+      courseData.forEach(u => {
+        u.vocab.forEach(v => {
+          allVocabList.push({
+            ...v,
+            unit: u.unit,
+            unitTitle: u.title
+          });
+        });
+      });
+    }
 
     function renderUnitsGrid() {
       const container = document.getElementById('units-grid-container');
@@ -673,31 +1570,56 @@
         card.className = 'unit-card';
         card.onclick = () => openUnitDetail(u.unit);
 
-        const icons = u.vocab.map(v => v.icon).join(' ');
+        const stars = earnedStars[u.unit] || 0;
+        let starIcons = '';
+        for (let i = 0; i < 4; i++) {
+          starIcons += (i < stars) ? '⭐' : '☆';
+        }
+
+        // Generate 4 mini vector illustrations for preview
+        const artPreviews = u.vocab.map(v => `
+          <div class="unit-art-preview-item" title="${v.word}: ${v.translation}">
+            ${getVocabIllustration(v.word)}
+          </div>
+        `).join('');
 
         card.innerHTML = `
-          <div class="unit-badge">${u.unit}</div>
+          <div class="unit-card-header">
+            <div class="unit-badge">Unit ${u.unit}</div>
+            <div class="unit-stars-indicator" title="${stars} sao đạt được">${starIcons}</div>
+          </div>
           <div class="unit-letter-box">${u.letter}</div>
           <h3>${u.title}</h3>
-          <div style="color: #64748B; font-size: 0.9rem; font-weight: 600;">Phonics: ${u.phonics}</div>
-          <div class="unit-vocab-preview">${icons}</div>
+          <div class="unit-subtitle">Âm: <strong>${u.phonics}</strong></div>
+          <div class="unit-art-preview">
+            ${artPreviews}
+          </div>
         `;
         container.appendChild(card);
       });
     }
 
-    function buildVocabList() {
-      allVocabList = [];
+    function populateScopeSelectors() {
+      const gameSelect = document.getElementById('game-scope-select');
+      const fcSelect = document.getElementById('fc-scope-select');
+
+      gameSelect.innerHTML = '<option value="all">🌟 Tất cả 16 Units</option>';
+      fcSelect.innerHTML = '<option value="all">🌟 Tất cả 16 Units</option>';
+
       courseData.forEach(u => {
-        u.vocab.forEach(v => {
-          allVocabList.push({
-            ...v,
-            unit: u.unit
-          });
-        });
+        const opt1 = document.createElement('option');
+        opt1.value = u.unit;
+        opt1.innerText = `Unit ${u.unit}: ${u.title}`;
+        gameSelect.appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = u.unit;
+        opt2.innerText = `Unit ${u.unit}: ${u.title}`;
+        fcSelect.appendChild(opt2);
       });
     }
 
+    /* VIEW NAVIGATION */
     function showView(viewId) {
       ['units-view', 'unit-detail-view', 'game-view', 'flashcard-view'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
@@ -706,9 +1628,11 @@
 
       // Update Nav Tabs
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-      if(viewId === 'units-view') document.getElementById('tab-units').classList.add('active');
-      if(viewId === 'game-view') document.getElementById('tab-game').classList.add('active');
-      if(viewId === 'flashcard-view') document.getElementById('tab-cards').classList.add('active');
+      if (viewId === 'units-view') document.getElementById('tab-units').classList.add('active');
+      if (viewId === 'game-view') document.getElementById('tab-game').classList.add('active');
+      if (viewId === 'flashcard-view') document.getElementById('tab-cards').classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function openUnitDetail(unitNum) {
@@ -716,10 +1640,10 @@
       if (!currentUnit) return;
 
       document.getElementById('detail-title').innerText = `Unit ${currentUnit.unit}: ${currentUnit.title}`;
-      document.getElementById('detail-subtitle').innerText = `Bài học chữ cái & âm: ${currentUnit.letter}`;
+      document.getElementById('detail-subtitle').innerText = `Chủ đề & Âm tiết: ${currentUnit.letter} ${currentUnit.phonics}`;
       document.getElementById('detail-letter').innerText = `${currentUnit.letter} ${currentUnit.phonics}`;
 
-      // Populate Vocab Grid
+      // Populate Vocab Grid with Rich SVG Visuals
       const vocabGrid = document.getElementById('detail-vocab-grid');
       vocabGrid.innerHTML = '';
       currentUnit.vocab.forEach(v => {
@@ -727,10 +1651,12 @@
         item.className = 'vocab-card';
         item.onclick = () => speakWord(v.word);
         item.innerHTML = `
-          <button class="audio-btn">🔊</button>
-          <div class="vocab-icon">${v.icon}</div>
+          <div class="vocab-illustration-box">
+            ${getVocabIllustration(v.word)}
+          </div>
           <div class="vocab-word">${v.word}</div>
           <div class="vocab-vi">${v.translation}</div>
+          <div class="audio-btn-pill"><span>🔊</span> Nghe đọc</div>
         `;
         vocabGrid.appendChild(item);
       });
@@ -757,119 +1683,263 @@
       showView('unit-detail-view');
     }
 
-    // TTS SPEECH SYNTHESIS
-    function speakWord(word) {
-      speakText(word);
+    /* UNIT-SCOPED ACTIONS */
+    function startQuizForCurrentUnit() {
+      if (!currentUnit) return;
+      quizScope = String(currentUnit.unit);
+      document.getElementById('game-scope-select').value = quizScope;
+      startQuiz();
     }
 
-    function speakText(text) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.85; // slightly slower for grade 1 kids
-        window.speechSynthesis.speak(utterance);
-      } else {
-        alert('Trình duyệt không hỗ trợ phát âm tự động.');
-      }
+    function startFlashcardsForCurrentUnit() {
+      if (!currentUnit) return;
+      fcScope = String(currentUnit.unit);
+      document.getElementById('fc-scope-select').value = fcScope;
+      startFlashcards();
     }
 
-    function speakChant() {
-      if (currentUnit && currentUnit.chant) {
-        speakText(currentUnit.chant);
-      }
-    }
-
-    /* GAME LOGIC */
+    /* QUIZ GAME LOGIC */
     function startQuiz() {
       quizScore = 0;
       document.getElementById('game-score').innerText = quizScore;
+      filterQuizVocab();
       showView('game-view');
       nextQuestion();
     }
 
+    function changeQuizScope(scopeVal) {
+      quizScope = scopeVal;
+      filterQuizVocab();
+      nextQuestion();
+    }
+
+    function filterQuizVocab() {
+      if (quizScope === 'all') {
+        quizFilterVocab = [...allVocabList];
+      } else {
+        const uNum = parseInt(quizScope);
+        quizFilterVocab = allVocabList.filter(v => v.unit === uNum);
+      }
+    }
+
+    function setQuizMode(mode) {
+      quizMode = mode;
+      document.getElementById('mode-visual-btn').classList.toggle('active', mode === 'visual');
+      document.getElementById('mode-listen-btn').classList.toggle('active', mode === 'listening');
+      nextQuestion();
+    }
+
     function nextQuestion() {
-      if (allVocabList.length === 0) return;
-      
-      // Select random word
-      const target = allVocabList[Math.floor(Math.random() * allVocabList.length)];
+      if (!quizFilterVocab || quizFilterVocab.length === 0) return;
+
+      // Select target item
+      const target = quizFilterVocab[Math.floor(Math.random() * quizFilterVocab.length)];
       currentQuizItem = target;
 
-      document.getElementById('game-emoji').innerText = target.icon;
-      document.getElementById('game-prompt').innerText = `Từ tiếng Anh của "${target.translation}" là gì?`;
+      const visualBox = document.getElementById('quiz-visual-box');
+      const listenBox = document.getElementById('quiz-listen-box');
+      const promptEl = document.getElementById('game-prompt');
+      const optionsGrid = document.getElementById('game-options');
 
-      // Speak target automatically
-      speakWord(target.word);
+      optionsGrid.innerHTML = '';
 
-      // Generate options (1 correct, 3 wrong)
-      let options = [target.word];
-      while (options.length < 4) {
-        const rand = allVocabList[Math.floor(Math.random() * allVocabList.length)].word;
+      if (quizMode === 'visual') {
+        visualBox.classList.remove('hidden');
+        listenBox.classList.add('hidden');
+        document.getElementById('game-art-container').innerHTML = getVocabIllustration(target.word);
+        promptEl.innerText = `Từ tiếng Anh của "${target.translation}" là gì?`;
+
+        // Automatically pronounce target
+        speakWord(target.word);
+
+        // Generate 4 text options
+        const options = getShuffledOptions(target.word, 4);
+        options.forEach(optWord => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerText = optWord;
+          btn.onclick = () => checkVisualAnswer(optWord, btn);
+          optionsGrid.appendChild(btn);
+        });
+      } else {
+        // Listening Mode
+        visualBox.classList.add('hidden');
+        listenBox.classList.remove('hidden');
+        promptEl.innerText = `Em hãy nghe và chọn hình vẽ tương ứng nhé!`;
+
+        // Pronounce target
+        speakWord(target.word);
+
+        // Generate 4 visual options
+        const options = getShuffledOptions(target.word, 4);
+        options.forEach(optWord => {
+          const optItem = allVocabList.find(v => v.word === optWord) || target;
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `
+            <div class="option-art">${getVocabIllustration(optWord)}</div>
+            <span style="font-size: 1.1rem; color: #64748B;">${optItem.translation}</span>
+          `;
+          btn.onclick = () => checkVisualAnswer(optWord, btn);
+          optionsGrid.appendChild(btn);
+        });
+      }
+    }
+
+    function replayQuizAudio() {
+      if (currentQuizItem) {
+        speakWord(currentQuizItem.word);
+      }
+    }
+
+    function getShuffledOptions(correctWord, count) {
+      let pool = (quizFilterVocab.length >= count) ? quizFilterVocab : allVocabList;
+      let options = [correctWord];
+
+      while (options.length < count && options.length < pool.length) {
+        const rand = pool[Math.floor(Math.random() * pool.length)].word;
         if (!options.includes(rand)) {
           options.push(rand);
         }
       }
-      // Shuffle options
-      options.sort(() => Math.random() - 0.5);
 
-      const optionsGrid = document.getElementById('game-options');
-      optionsGrid.innerHTML = '';
-      options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(opt, btn);
-        optionsGrid.appendChild(btn);
-      });
+      return options.sort(() => Math.random() - 0.5);
     }
 
-    function checkAnswer(selectedWord, btnElement) {
+    function checkVisualAnswer(selectedWord, btnElement) {
       const isCorrect = selectedWord === currentQuizItem.word;
       if (isCorrect) {
         btnElement.classList.add('correct');
         quizScore += 10;
         document.getElementById('game-score').innerText = quizScore;
-        confetti({ particleCount: 60, spread: 60, origin: { y: 0.7 } });
-        speakText("Awesome! " + currentQuizItem.word);
-        setTimeout(nextQuestion, 1200);
+        playSuccessSound();
+
+        // Award star
+        addStar(currentQuizItem.unit);
+
+        confetti({
+          particleCount: 50,
+          spread: 65,
+          origin: { y: 0.65 }
+        });
+
+        speakText("Great job! " + currentQuizItem.word, () => {
+          setTimeout(nextQuestion, 500);
+        });
       } else {
         btnElement.classList.add('wrong');
+        playWrongSound();
         speakText("Try again!");
       }
     }
 
     /* FLASHCARDS LOGIC */
     function startFlashcards() {
+      filterFCVocab();
       fcIndex = 0;
       showView('flashcard-view');
       renderFC();
     }
 
+    function changeFCScope(scopeVal) {
+      fcScope = scopeVal;
+      filterFCVocab();
+      fcIndex = 0;
+      renderFC();
+    }
+
+    function filterFCVocab() {
+      if (fcScope === 'all') {
+        fcFilterVocab = [...allVocabList];
+      } else {
+        const uNum = parseInt(fcScope);
+        fcFilterVocab = allVocabList.filter(v => v.unit === uNum);
+      }
+    }
+
     function renderFC() {
-      if (allVocabList.length === 0) return;
-      currentFC = allVocabList[fcIndex];
+      if (!fcFilterVocab || fcFilterVocab.length === 0) return;
+      currentFC = fcFilterVocab[fcIndex];
+
       const card = document.getElementById('active-card');
       card.classList.remove('flipped');
 
+      document.getElementById('fc-counter').innerText = `Thẻ ${fcIndex + 1} / ${fcFilterVocab.length}`;
+
       setTimeout(() => {
-        document.getElementById('fc-icon').innerText = currentFC.icon;
+        document.getElementById('fc-art').innerHTML = getVocabIllustration(currentFC.word);
         document.getElementById('fc-word').innerText = currentFC.word;
         document.getElementById('fc-vi').innerText = currentFC.translation;
       }, 150);
     }
 
     function flipCard() {
-      document.getElementById('active-card').classList.toggle('flipped');
+      const card = document.getElementById('active-card');
+      card.classList.toggle('flipped');
+      if (card.classList.contains('flipped')) {
+        // Speak word when flipped to reinforce learning
+        speakWord(currentFC.word);
+      }
     }
 
     function nextCard() {
-      fcIndex = (fcIndex + 1) % allVocabList.length;
+      if (!fcFilterVocab.length) return;
+      fcIndex = (fcIndex + 1) % fcFilterVocab.length;
       renderFC();
     }
 
     function prevCard() {
-      fcIndex = (fcIndex - 1 + allVocabList.length) % allVocabList.length;
+      if (!fcFilterVocab.length) return;
+      fcIndex = (fcIndex - 1 + fcFilterVocab.length) % fcFilterVocab.length;
       renderFC();
+    }
+
+    // Keyboard support for flashcards
+    document.addEventListener('keydown', (e) => {
+      const fcView = document.getElementById('flashcard-view');
+      if (fcView && !fcView.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') nextCard();
+        if (e.key === 'ArrowLeft') prevCard();
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          flipCard();
+        }
+      }
+    });
+
+    /* GAMIFICATION: STARS & PROGRESS PERSISTENCE */
+    function loadSavedStars() {
+      try {
+        const raw = localStorage.getItem('grade1_english_stars');
+        if (raw) {
+          earnedStars = JSON.parse(raw);
+        }
+      } catch (e) {
+        earnedStars = {};
+      }
+    }
+
+    function saveStars() {
+      try {
+        localStorage.setItem('grade1_english_stars', JSON.stringify(earnedStars));
+      } catch (e) {}
+    }
+
+    function addStar(unitNum) {
+      if (!unitNum) return;
+      earnedStars[unitNum] = Math.min(4, (earnedStars[unitNum] || 0) + 1);
+      saveStars();
+      updateTotalStarsBadge();
+      renderUnitsGrid();
+    }
+
+    function updateTotalStarsBadge() {
+      let total = 0;
+      for (const u in earnedStars) {
+        total += earnedStars[u];
+      }
+      const el = document.getElementById('header-total-stars');
+      if (el) el.innerText = total;
     }
   </script>
 </body>
