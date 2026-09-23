@@ -213,7 +213,7 @@ const VOCAB_ILLUSTRATIONS = {
     <ellipse cx="50" cy="26" rx="6" ry="3" fill="#64748B" stroke="#2B2D42" stroke-width="1.5"/>
     <!-- Wave pattern -->
     <path d="M28 46 Q50 56 72 46 L72 58 Q50 68 28 58 Z" fill="#FFE4E6"/>
-    <text x="50" y="55" font-family="'Fredoka', sans-serif" font-weight="700" font-size="11" fill="#E11D48" text-anchor="middle">SODA</text>
+    <text x="50" y="55" font-family="'Fredoka', sans-serif" font-weight="700" font-size="12" fill="#E11D48" text-anchor="middle">can</text>
   </svg>`,
 
   "hat": `<svg viewBox="0 0 100 100" class="vocab-svg">
@@ -373,8 +373,8 @@ const VOCAB_ILLUSTRATIONS = {
     <rect x="26" y="52" width="48" height="22" fill="#3B82F6"/>
     <line x1="26" y1="52" x2="74" y2="52" stroke="#2B2D42" stroke-width="3"/>
     <line x1="26" y1="74" x2="74" y2="74" stroke="#2B2D42" stroke-width="3"/>
-    <!-- Bold text MILK -->
-    <text x="50" y="68" font-family="'Fredoka', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">MILK</text>
+    <!-- Bold text milk -->
+    <text x="50" y="68" font-family="'Fredoka', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">milk</text>
     <!-- Cute Cow spot -->
     <path d="M34 40 C36 36 42 38 42 42 C42 46 38 48 34 46 Z" fill="#1E3A8A"/>
   </svg>`,
@@ -425,7 +425,7 @@ const VOCAB_ILLUSTRATIONS = {
     <!-- Droplets -->
     <circle cx="78" cy="24" r="7" fill="#EF4444"/>
     <circle cx="22" cy="74" r="6" fill="#EF4444"/>
-    <text x="50" y="58" font-family="'Fredoka', sans-serif" font-weight="700" font-size="20" fill="#FFFFFF" text-anchor="middle">RED</text>
+    <text x="50" y="58" font-family="'Fredoka', sans-serif" font-weight="700" font-size="20" fill="#FFFFFF" text-anchor="middle">red</text>
   </svg>`,
 
   // UNIT 7: Gg

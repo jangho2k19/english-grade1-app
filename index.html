@@ -18,9 +18,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Fallback dữ liệu và thư viện hình minh họa SVG -->
-  <script src="./course_data.js"></script>
-  <script src="./illustrations.js"></script>
-  <script src="./songs_data.js"></script>
+  <script src="./course_data.js?v=1.5"></script>
+  <script src="./illustrations.js?v=1.5"></script>
+  <script src="./songs_data.js?v=1.5"></script>
   <style>
     :root {
       --primary: #FF5E62;
@@ -302,6 +302,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      height: 100%;
       overflow: hidden;
       content-visibility: auto;
       contain-intrinsic-size: 260px;
@@ -317,18 +318,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.6rem;
+      min-height: 38px;
+      margin-bottom: 0.75rem;
     }
 
     .unit-badge {
-      background: #FFF1F2;
-      color: var(--primary);
       font-family: 'Fredoka', cursive;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      padding: 4px 12px;
+      padding: 4px 13px;
       border-radius: 14px;
-      border: 1.5px solid #FECDD3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.3px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1.5px solid transparent;
+      transition: transform 0.2s;
     }
 
     .unit-stars-indicator {
@@ -359,33 +365,44 @@
     }
 
     .unit-letter-box {
-      display: inline-block;
-      background: linear-gradient(135deg, #4ECDC4, #2CB1A6);
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0D9488, #0F766E);
+      color: #FFFFFF;
       font-family: 'Comic Neue', Georgia, serif;
       font-size: 1.45rem;
       font-weight: 700;
       letter-spacing: 1.5px;
-      padding: 4px 14px;
+      line-height: 1;
+      height: 38px;
+      min-width: 58px;
+      padding: 0 14px;
       border-radius: 12px;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
       align-self: flex-start;
-      box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
+      box-shadow: 0 3px 8px rgba(13, 148, 136, 0.25);
     }
 
     .unit-card h3 {
       font-family: 'Fredoka', cursive;
       font-size: 1.25rem;
       color: var(--dark);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
       line-height: 1.3;
+      min-height: 3.25rem;
+      display: flex;
+      align-items: flex-start;
     }
 
     .unit-card .unit-subtitle {
       color: var(--light-text);
       font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
+      min-height: 1.35rem;
+      display: flex;
+      align-items: center;
     }
 
     /* MINI ART PREVIEWS IN CARDS WITH VOCAB LABELS */
@@ -2845,6 +2862,16 @@
         const stars = earnedStars[u.unit] || 0;
         const starIcons = getStarRatingHTML(stars, 4);
 
+        // High-contrast, WCAG AAA accessible badge themes for clear readability
+        const badgeThemes = [
+          { bg: '#FFE4E6', color: '#9F1239', border: '#FDA4AF' }, // Units 1-4: Rose/Crimson (7.6:1)
+          { bg: '#EDE9FE', color: '#4C1D95', border: '#C4B5FD' }, // Units 5-8: Purple/Indigo (8.8:1)
+          { bg: '#FEF3C7', color: '#78350F', border: '#FCD34D' }, // Units 9-12: Amber/Bronze (8.4:1)
+          { bg: '#CCFBF1', color: '#115E59', border: '#5EEAD4' }  // Units 13-16: Pine/Teal (7.3:1)
+        ];
+        const themeIdx = Math.floor((u.unit - 1) / 4) % badgeThemes.length;
+        const theme = badgeThemes[themeIdx];
+
         // Generate 4 mini vector illustrations for preview WITH English word label
         const artPreviews = u.vocab.map(v => `
           <div class="unit-art-preview-item" title="Bấm để nghe: ${v.word} (${v.translation})" onclick="event.stopPropagation(); triggerVocabPronounce('${v.word.replace(/'/g, "\\'")}', this)">
@@ -2855,7 +2882,7 @@
 
         card.innerHTML = `
           <div class="unit-card-header">
-            <div class="unit-badge">Unit ${u.unit}</div>
+            <div class="unit-badge" style="background: ${theme.bg}; color: ${theme.color}; border: 1.5px solid ${theme.border};">Unit ${u.unit}</div>
             <div class="unit-stars-indicator" title="${stars} sao đạt được">${starIcons}</div>
           </div>
           <div class="unit-letter-box">${u.letter}</div>

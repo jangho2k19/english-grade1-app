@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eng-grade1-v1.3';
+const CACHE_NAME = 'eng-grade1-v1.5';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -20,10 +20,15 @@ const CORE_ASSETS = [
 // Install: Cache core assets for offline usage
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(CORE_ASSETS).catch((err) => {
-        console.warn('Some assets failed to cache during install:', err);
-      });
+    caches.open(CACHE_NAME).then(async (cache) => {
+      for (const asset of CORE_ASSETS) {
+        try {
+          const res = await fetch(asset, { cache: 'reload' });
+          if (res.ok) await cache.put(asset, res);
+        } catch (e) {
+          console.warn('Asset cache error:', asset, e);
+        }
+      }
     }).then(() => self.skipWaiting())
   );
 });
